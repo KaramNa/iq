@@ -1,12 +1,12 @@
 <div class="col-auto  d-flex align-items-center px-1 ">
-    <a
+    <apan
         class="d-flex align-items-center py-2 px-3 top-navbar-link rounded"
         style="color: inherit;"
         type="button" id="language-dropdown"
         data-bs-toggle="dropdown" aria-expanded="false"
     >
         {{ LaravelLocalization::getCurrentLocaleNative()  }}
-    </a>
+    </apan>
 
     <ul class="dropdown-menu" aria-labelledby="language-dropdown">
         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)

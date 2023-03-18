@@ -17,8 +17,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on("users")->onDelete('cascade');
-            $table->string('question')->nullable();
-            $table->longText('answer')->nullable();
             $table->tinyInteger('is_featured')->default(0);
             $table->integer('order')->default(0);
             $table->timestamps();
