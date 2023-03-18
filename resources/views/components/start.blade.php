@@ -35,19 +35,19 @@
 
                     <div class="col-xl-12 px-0">
                         <ul style="list-style:none" class="p-0 features-list">
-                            <li>
+                            <li class='d-flex mb-2'>
                                 <i class="fal fa-brain me-2 ms-0 font-4 p-2" style="color:#7cb798"></i>
                                 <span>@lang('home.feature1')</span>
                             </li>
-                            <li>
+                            <li class='d-flex mb-2'>
                                 <i class="fal fa-brain me-2 ms-0 font-4 p-2" style="color:#7cb798"></i>
                                 <span>@lang('home.feature2')</span>
                             </li>
-                            <li>
+                            <li class='d-flex mb-2'>
                                 <i class="fal fa-brain me-2 ms-0 font-4 p-2" style="color:#7cb798"></i>
                                 <span>@lang('home.feature3')</span>
                             </li>
-                            <li>
+                            <li class='d-flex mb-2'>
                                 <i class="fal fa-brain me-2 ms-0 font-4 p-2" style="color:#7cb798"></i>
                                 <span>@lang('home.feature4')</span>
                             </li>

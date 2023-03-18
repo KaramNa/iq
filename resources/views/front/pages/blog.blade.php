@@ -1,7 +1,8 @@
-@extends('layouts.app',['page_title'=>"المدونة"])
+
+@extends('layouts.app',['page_title'=>__('admin.articles') , 'seo_meta_description'=> __('blog.seo_description')])
 @section('content')
     <style>
-        .article-img:hover{
+        .article-img:hover {
             filter: brightness(35%);
         }
     </style>

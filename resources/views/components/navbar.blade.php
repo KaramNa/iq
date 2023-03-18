@@ -12,7 +12,7 @@
             </div>
             <div class="col-auto d-flex align-items-center px-1 py-2">
                 <a href="/">
-                    <img src="{{$settings['get_website_wide_logo']}}" style="width: 105px;"
+                    <img src="{{$settings['get_website_logo']}}" style="width: 65px;"
                          alt="{{$settings['website_name']}}">
                 </a>
             </div>
@@ -36,7 +36,7 @@
                     @endif
                 </div>
 
-                <x-language-switch />
+                <x-language-switch/>
 
             </div>
         </div>
@@ -46,12 +46,15 @@
     <div class="col-12 d-flex justify-content-between  align-items-center p-0 shadow" style="height:65px">
         <span class="px-3 font-1 kufi">
 
-            <img src="{{$settings['get_website_wide_logo']}}" style="width: 105px;" alt="{{$settings['website_name']}}">
+            <img src="{{$settings['get_website_logo']}}" style="width: 60px;" alt="{{$settings['website_name']}}">
 
         </span>
         <span class="d-flex">
             <span class="font-1"><span class="far fa-times font-3 px-4 py-3" style="cursor: pointer;"
-                                       onclick="document.getElementById('aside-menu').classList.toggle('active');document.getElementById('body-overlay').classList.toggle('active');"></span></span>
+                                       onclick="document.getElementById('aside-menu').classList.toggle('active');document.getElementById('body-overlay').classList.toggle('active');">
+
+                </span>
+            </span>
         </span>
     </div>
     <div class="col-12 p-0">
