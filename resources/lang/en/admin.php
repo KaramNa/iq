@@ -59,6 +59,17 @@ return [
     'add_link'               => 'Add link',
     'edit_link'              => 'Edit link',
     'send_alert'             => 'Send alert',
+    'quick_actions'          => 'Quick actions',
+    'website'                => 'The Website',
+    'visitors_rate'          => 'Visitors rate',
+    'new_users'              => 'New users',
+    'top_visited_pages'      => 'Top visited pages',
+    'top_traffic_sources'    => 'Top traffic sources',
+    'top_visitor_countries'  => 'Top visitor countries',
+    'browsers'               => 'Browsers',
+    'operating_systems'      => 'Operating systems',
+    'top_devices'            => 'Top devices',
+    'no_notifications'       => 'There are no notifications yet',
 
 
 ];

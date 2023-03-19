@@ -134,11 +134,12 @@
                                                             <figure class="user-avatar ms-2 me-0">
                                                                 <img class="rounded-circle" alt=""
                                                                      src="{{$comment->user==null?env('DEFAULT_IMAGE_AVATAR'):$comment->user->getUserAvatar()}}"
-                                                                     style="width:40px;height:40px"/></figure>
+                                                                     style="width:40px;height:40px" alt="avatar"/>
+                                                            </figure>
                                                             <div>
                                                                 <h6 class="comment-author">
                                                                     <span
-                                                                       class="link-dark font-1">{{$comment->user==null?$comment->adder_name:$comment->user->name}}</span>
+                                                                        class="link-dark font-1">{{$comment->user==null?$comment->adder_name:$comment->user->name}}</span>
                                                                 </h6>
                                                                 <ul class="post-meta">
                                                                     <li>
@@ -196,7 +197,8 @@
                         </div>
 
                         <div class="col-12 mb-2 p-3" style="background:var(--bg-main);border-radius: 6px;">
-                            <img src="{{$article->main_image('thumb')}}" style="width:100%">
+                            <img src="{{$article->main_image('thumb')}}" style="width:100%"
+                                 alt="{{ $article->translate()->title }}">
                         </div>
 
 
@@ -213,7 +215,8 @@
                                                     <a href="{{route('article.show',$single_article->translate()->slug)}}"
                                                        class="px-0 d-flex">
                                                         <img src="{{$single_article->main_image('tiny')}}"
-                                                             style="width:55px;height:55px">
+                                                             style="width:55px;height:55px"
+                                                             alt="{{ $single_article->translate()->title }}">
                                                     </a>
                                                 </div>
                                                 <div class="px-2" style="width:calc(100% - 75px)">
@@ -263,15 +266,15 @@
         </div>
     </div>
 @endsection
-@section('scripts')
-    <script type="text/javascript">
-        Fancybox.bind('.post img', {
-            caption: function (fancybox, carousel, slide) {
-                return (
-                    `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
-                );
-            },
-        });
+{{--@section('scripts')--}}
+{{--    <script type="text/javascript">--}}
+{{--        Fancybox.bind('.post img', {--}}
+{{--            caption: function (fancybox, carousel, slide) {--}}
+{{--                return (--}}
+{{--                    `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption--}}
+{{--                );--}}
+{{--            },--}}
+{{--        });--}}
 
-    </script>
-@endsection
+{{--    </script>--}}
+{{--@endsection--}}

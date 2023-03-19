@@ -76,9 +76,8 @@ class SiteMapController extends Controller
         $urls = [];
         foreach ($items as $item) {
             for ($i = 1; $i < ceil($item['data']->count() / $this->items_per_page) + 1; $i++) {
-                $url = '<sitemap><loc>' . env(
-                        "APP_URL"
-                    ) . '/sitemaps/' . $item['name'] . '/' . $i . '/sitemap.xml</loc></sitemap>';
+                $url = '<sitemap><loc>' . env("APP_URL")
+                    . '/sitemaps/' . $item['name'] . '/' . $i . '/sitemap.xml</loc></sitemap>';
                 array_push($urls, $url);
             }
         }

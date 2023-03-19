@@ -10,7 +10,7 @@
 				</div>
 				<div class="col-12 col-lg-4 p-0">
 				</div>
-				<div class="col-12 col-lg-4 p-2 text-lg-end">
+				<div class="col-12 col-lg-4 p-2 create-button">
 					@can('menus-create')
 					<a href="{{route('admin.menus.create')}}">
 					<span class="btn btn-primary"><span class="fas fa-plus"></span> إضافة جديد</span>

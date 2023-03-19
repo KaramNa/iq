@@ -11,7 +11,7 @@
 				</div>
 				<div class="col-12 col-lg-4 py-0">
 				</div>
-				<div class="col-12 col-lg-4 p-2 text-lg-end">
+				<div class="col-12 col-lg-4 p-2 create-button">
 					@can('announcements-create')
 		 			<a href="{{route('admin.announcements.create')}}">
 		 				<button class="btn btn-primary pb-2"><span class="fas fa-plus"></span> إضافة إعلان</button>

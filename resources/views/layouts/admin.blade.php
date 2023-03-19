@@ -1,6 +1,6 @@
 @props(['page_title' => __('admin.dashboard')])
     <!DOCTYPE html>
-<html lang="ar">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,7 +195,7 @@
     <div style="width: 260px;background: #ddeaea;min-height: 100vh;position: fixed;z-index: 900" class="aside active">
         <div class="col-12 px-0 d-flex" style="height: 55px">
             <div class="col-12 p-1" style="color: var(--background-1)">
-                <div class="d-none d-md-none justify-content-center align-items-center px-0   asideToggle"
+                <div class="d-none d-md-none justify-content-center align-items-center px-0 asideToggle"
                      style="width: 40px;height: 40px;">
                     <span class="fal fa-bars font-4 cursor-pointer"></span>
                 </div>
@@ -484,6 +484,7 @@
                 <span class="fal fa-bars font-4"></span>
             </div>
             <div class="col-12 px-0 d-flex justify-content-end  " style="height: 60px;">
+                <x-language-switch />
                 <div class="btn-group" id="notificationDropdown">
 
                     <div class="col-12 px-0 d-flex justify-content-center align-items-center btn  "
