@@ -4,6 +4,7 @@ import toastr from 'toastr';
 import { Fancybox } from "@fancyapps/ui";
 
 import '/public/js/bootstrap.bundle.min.js';
+// import '/public/js/jquery-social-share-bar.js';
 /*import '/public/js/validatorjs.min.js';*/
 import '/public/js/main.js';
 /*import '/public/assets/js/theme.js';
@@ -11,7 +12,7 @@ import '/public/assets/js/plugins.js';*/
 
 
 
-window.$ = window.jQuery = $;
+window.$ = window.jQuery = jQuery;
 window.Favico= favico;
 window.Fancybox= Fancybox;
 window.toastr= toastr;

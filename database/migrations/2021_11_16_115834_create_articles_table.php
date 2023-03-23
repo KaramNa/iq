@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on("users")->onDelete('cascade');
-            $table->string('main_image')->nullable();
+            $table->string('image')->nullable();
             $table->integer('is_featured')->default(0);
             $table->integer('is_published')->default(0);
             $table->integer('views')->default(0);

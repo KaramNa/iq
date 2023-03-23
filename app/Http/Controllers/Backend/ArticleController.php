@@ -129,8 +129,8 @@ class ArticleController extends Controller
             $rules = RuleFactory::make([
                 'ar.title' => 'required_without:en.title',
                 'en.title' => 'required_without:ar.title',
-                'ar.slug' => 'nullable|required_with:ar.title|max:60|unique:article_translations,slug,' . $request->article . ',article_id',
-                'en.slug' => 'nullable|required_with:en.title|max:60|unique:article_translations,slug,' . $request->article . ',article_id',
+                'ar.slug' => 'required_with:ar.title|max:60|unique:article_translations,slug,' . $request->article . ',article_id',
+                'en.slug' => 'required_with:en.title|max:60|unique:article_translations,slug,' . $request->article . ',article_id',
                 'ar.description' => 'required_with:ar.title|max:100000',
                 'en.description' => 'required_with:en.title|max:100000',
                 'ar.meta_description' => 'required_with:ar.title|max:100000',
@@ -173,9 +173,9 @@ class ArticleController extends Controller
 
         MainHelper::move_media_to_model_by_id($request->temp_file_selector, $article, 'description');
 
-        if ($request->hasFile('main_image')) {
-            $main_image = $article->addMedia($request->main_image)->toMediaCollection('image');
-            $article->update(['main_image' => $main_image->id . '/' . $main_image->file_name]);
+        if ($request->hasFile('image')) {
+            $image = $article->addMedia($request->image)->toMediaCollection('image');
+            $article->update(['image' => $image->id . '/' . $image->file_name]);
         }
     }
 }

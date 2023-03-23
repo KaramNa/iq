@@ -1,4 +1,4 @@
-@extends('layouts.app',['page_title'=>$article->title,'seo_meta_description'=>$article->meta_description,'page_image'=>$article->main_image()])
+@extends('layouts.app',['page_title'=>$article->title,'seo_meta_description'=>$article->meta_description,'page_image'=>$article->image()])
 @section('content')
     <style>
         article img,
@@ -56,7 +56,7 @@
                 <div class="col-12 col-lg-8 p-2">
                     <div class="col-12 p-2 p-lg-3 rounded-2">
                         <figure class="card-img-top">
-                            <img src="{{$article->main_image('original')}}"
+                            <img src="{{$article->image('original')}}"
                                  alt="{{ $article->translate()->title }}"
                                  data-fancybox
                             />
@@ -66,7 +66,7 @@
                                 @foreach($article->categories as $article_category)
                                     @if($loop->index<5)
                                         <a href="{{route('category.show',$article_category)}}" class="hover pe-2"
-                                           rel="category">{{$article_category->title}}</a>
+                                           rel="category">{{$article_category->name}}</a>
                                     @endif
                                 @endforeach
                             </div>
@@ -197,7 +197,7 @@
                         </div>
 
                         <div class="col-12 mb-2 p-3" style="background:var(--bg-main);border-radius: 6px;">
-                            <img src="{{$article->main_image('thumb')}}" style="width:100%"
+                            <img src="{{$article->image('thumb')}}" style="width:100%"
                                  alt="{{ $article->translate()->title }}">
                         </div>
 
@@ -214,7 +214,7 @@
                                                     style="width: 65px;padding: 3px;border-radius: 5px;overflow: hidden;">
                                                     <a href="{{route('article.show',$single_article->translate()->slug)}}"
                                                        class="px-0 d-flex">
-                                                        <img src="{{$single_article->main_image('tiny')}}"
+                                                        <img src="{{$single_article->image('tiny')}}"
                                                              style="width:55px;height:55px"
                                                              alt="{{ $single_article->translate()->title }}">
                                                     </a>
@@ -232,7 +232,7 @@
                                                                 @foreach($single_article->categories as $single_article_category)
                                                                     @if($loop->index<5)
                                                                         <a href="{{route('category.show',$single_article_category)}}"
-                                                                           class="px-0">{{$single_article_category->title}}</a>
+                                                                           class="px-0">{{$single_article_category->name}}</a>
                                                                     @endif
                                                                 @endforeach
                                                             </div>

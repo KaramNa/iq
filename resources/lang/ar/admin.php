@@ -18,7 +18,7 @@ return [
     'articles'                      => 'المقالات',
     'add_article'                   => 'إضافة مقال',
     'edit_article'                  => 'تعديل المقال',
-    'show_available_articles_in'    => 'إظهار المقالات المتوفرة باللغة',
+    'translated_articles'           => 'إظهار المقالات المتوفرة باللغة',
     'comments'                      => 'التعليقات',
     'add_comment'                   => 'أضف تعليق',
     'edit_comment'                  => 'تعديل التعليق',
@@ -72,6 +72,42 @@ return [
     'operating_systems'             => 'أنظمة التشغيل',
     'top_devices'                   => 'أعلى الأجهزة',
     'no_notifications'              => 'لا توجد إشعارات حتى الآن',
+    'announcement_title'            => 'عنوان الإعلان',
+    'start_date'                    => 'تاريخ البداية',
+    'expiry_date'                   => 'تاريخ الانتهاء',
+    'url'                           => 'الرابط',
+    'ad_location'                   => 'مكان الإعلان',
+    'image'                         => 'الصورة',
+    'open_in_a_new_window'          => 'فتح الرابط في نافذة جديدة',
+    'ad_select_location'     => [
+        'main'               => 'الرئيسية',
+        'top'                => 'أعلى الموقع',
+        'aside'              => 'جانب الموقع',
+        'footer'             => 'أسفل الموقع',
+        'popup'              => 'Popup',
+        'label'              => 'اختر مكان الإعلان'
+    ],
+    'title'                          => 'العنوان',
+    'link'                           => 'الرابط',
+    'actions'                        => 'تحكم',
+    'delete_confirmation'            => 'هل أنت متأكد من عملية الحذف',
+    'user'                           => 'المستخدم',
+    'featured'                       => 'مميز',
+    'status'                         => 'الحالة',
+    'views'                          => 'زيارات',
+    'update'                         => 'تعديل',
+    'show'                           => 'عرض',
+    'delete'                         => 'حذف',
+    'meta_description'               => 'ميتا الوصف',
+    'name'                           => 'الاسم',
+    'characters'                     => 'حرفاً',
+
+
+
+
+
+
+
 
 
 

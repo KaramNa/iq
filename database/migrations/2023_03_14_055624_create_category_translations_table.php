@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('locale')->index();
 
             $table->string('slug')->unique()->index();
-            $table->text('title')->nullable();
+            $table->text('name')->nullable();
             $table->longText('description')->nullable();
             $table->text('meta_description')->nullable();
 

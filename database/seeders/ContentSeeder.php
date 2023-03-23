@@ -15,7 +15,7 @@ class ContentSeeder extends Seeder
     public function run()
     {
 
- 
+
         $articles_count = 10;
 
         $categories_titles=[
@@ -57,9 +57,9 @@ class ContentSeeder extends Seeder
                 'title'=>$faker->realText(50),
                 'description'=>$faker->realText(10000)
             ]);
-            $main_image = $article->addMediaFromUrl("https://loremflickr.com/700/500/nature")->toMediaCollection('main_image');
-            $article->update(['main_image'=>$main_image->id.'/'.$main_image->file_name]);
+            $image = $article->addMediaFromUrl("https://loremflickr.com/700/500/nature")->toMediaCollection('image');
+            $article->update(['image'=>$image->id.'/'.$image->file_name]);
             $article->categories()->sync(\App\Models\Category::inRandomOrder()->first()->id);
-        } 
+        }
     }
 }

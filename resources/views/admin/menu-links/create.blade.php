@@ -2,13 +2,6 @@
 @section('content')
     <div class="col-12 p-3">
         <div class="col-12 col-lg-12 p-0 ">
-            @if ($errors->any())
-                @foreach($errors->all() as $error)
-                    {{ $error }}
-
-                @endforeach
-
-            @endif
             <form id="validate-form" class="row" enctype="multipart/form-data" method="POST"
                   action="{{route('admin.menu-links.store')}}">
                 @csrf
@@ -42,32 +35,7 @@
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
                                 @foreach(LaravelLocalization::getSupportedLocales() as $key  => $lang)
-                                    <div class="tab-pane fade show {{ app()->getLocale() == $key ? 'active' : ''}}"
-                                         id="pills-{{ $key }}" role="tabpanel"
-                                         aria-labelledby="pills-{{ $key }}-tab"
-                                    >
-                                        <div class="col-12 p-2">
-                                            <label for="{{ $key }}[title]" class="col-12">
-                                                عنوان الرابط
-                                            </label>
-                                            <div class="col-12 pt-3">
-                                                <input
-                                                    type="text"
-                                                    id="{{ $key }}[title]"
-                                                    name="{{ $key }}[title]"
-                                                    class="form-control"
-                                                    value="{{ old($key . '.title') }}"
-                                                    style="direction: {{ $key == 'ar' ? 'rtl' : 'ltr' }}"
-                                                >
-                                            </div>
-                                        </div>
-                                        @error("{$key}.title")
-                                        <div class="text-danger">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-
-                                    </div>
+                                    <x-form.text-input-translation type="text" label="عنوان الرابط" :key="$key" name="title" />
                                 @endforeach
                             </div>
                         </div>

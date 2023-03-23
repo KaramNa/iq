@@ -28,7 +28,7 @@ class CategoryController extends Controller
                 $q->where('id', $request->id);
             }
             if ($request->q != null) {
-                $q->whereTranslationLike('title', '%' . $request->q . '%');
+                $q->whereTranslationLike('name', '%' . $request->q . '%');
             }
         })->withCount(['articles'])->orderBy('id', 'DESC')->paginate();
 
@@ -96,8 +96,8 @@ class CategoryController extends Controller
     {
         foreach (LaravelLocalization::getSupportedLocales() as $key => $locale) {
             $translated_data = $request->$key;
-            if ($translated_data['title']) {
-                $translated_data['slug'] = Str::slug($request->{$key}['title'], '-', null);
+            if ($translated_data['name']) {
+                $translated_data['slug'] = Str::slug($request->{$key}['name'], '-', null);
                 $request->merge([
                     $key => $translated_data
                 ]);
@@ -105,7 +105,7 @@ class CategoryController extends Controller
         }
 
         $rules = RuleFactory::make([
-            '%title%' => 'required|unique:category_translations,title,' . $request->category . ',category_id',
+            '%name%' => 'required|unique:category_translations,name,' . $request->category . ',category_id',
             '%description%' => 'required|max:100000',
             '%meta_description%' => 'required|max:100000',
         ]);
@@ -116,8 +116,8 @@ class CategoryController extends Controller
     private function saveCategory(Request $request, Category $category): void
     {
         foreach (LaravelLocalization::getSupportedLocales() as $key => $locale) {
-            if ($request->{$key}['title']) {
-                $category->translateOrNew($key)->title = $request->{$key}['title'];
+            if ($request->{$key}['name']) {
+                $category->translateOrNew($key)->name = $request->{$key}['name'];
                 $category->translateOrNew($key)->description = $request->{$key}['description'];
                 $category->translateOrNew($key)->slug = $request->{$key}['slug'];
                 $category->translateOrNew($key)->meta_description = $request->{$key}['meta_description'];

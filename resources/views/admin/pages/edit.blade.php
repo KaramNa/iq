@@ -127,7 +127,7 @@
 
                         <div class="col-12 col-lg-6 p-2">
                             <div class="col-12">
-                                @lang('article.main_image')
+                                @lang('article.image')
                             </div>
                             <div class="col-12 pt-3">
                                 <input type="file" name="image" class="form-control" accept="image/*">

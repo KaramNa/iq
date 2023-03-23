@@ -1,87 +1,51 @@
 @extends('layouts.admin', ['page_title' => __('admin.categories')])
 @section('content')
-    <div class="col-12 p-3">
-        <div class="col-12 col-lg-12 p-0 main-box">
+    <x-form.main title="{{ trans('admin.categories') }}">
 
-            <div class="col-12 px-0">
-                <div class="col-12 p-0 row">
-                    <div class="col-12 col-lg-4 py-3 px-3">
-                        <span class="fas fa-categories"></span> @lang('admin.categories')
-                    </div>
-                    <div class="col-12 col-lg-4 p-0">
-                    </div>
-                    <div class="col-12 col-lg-4 p-2 create-button">
-                        @can('categories-create')
-                            <a href="{{route('admin.categories.create')}}">
-                                <span class="btn btn-primary"><span class="fas fa-plus"></span> إضافة جديد</span>
-                            </a>
-                        @endcan
-                    </div>
-                </div>
-                <div class="col-12 divider" style="min-height: 2px;"></div>
-            </div>
+        <x-form.index :label="trans('admin.add_category')" permission="categories-create"
+                      :route="route('admin.categories.create')"/>
 
-            <div class="col-12 py-2 px-2 row">
-                <div class="col-12 col-lg-4 p-2">
-                    <form method="GET">
-                        <input type="text" name="q" class="form-control" placeholder="بحث ... "
-                               value="{{request()->get('q')}}">
-                    </form>
-                </div>
-            </div>
-            <div class="col-12 p-3" style="overflow:auto">
-                <div class="col-12 p-0" style="min-width:1100px;">
+        @php
+            $columns = [
+                'id' =>'#',
+                'image' => trans('admin.image'),
+                'name' => trans('admin.name'),
+                'articles' => trans('admin.articles'),
+                'actions' => trans('admin.actions'),
+                ];
+        @endphp
 
+        <x-form.table :columns="$columns" :targetModel="$categories">
 
-                    <table class="table table-bordered  table-hover">
-                        <thead>
-                        <tr>
-                            <th>#</th>
+            @foreach($categories as $category)
+                <tr>
+                    <td>{{$category->id}}</td>
 
-                            <th>الشعار</th>
-                            <th>العنوان</th>
-                            <th>@lang('admin.articles')</th>
-                            <th>تحكم</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($categories as $category)
-                            <tr>
-                                <td>{{$category->id}}</td>
+                    <td><img src="{{$category->image()}}" style="width:40px"></td>
+                    <td>{{$category->name}}</td>
+                    <td>
+                        <a href="{{route('admin.articles.index',['category_id'=>$category->id])}}">{{$category->articles_count}}</a>
+                    </td>
 
-                                <td><img src="{{$category->image()}}" style="width:40px"></td>
-                                <td>{{$category->title}}</td>
-                                <td>
-                                    <a href="{{route('admin.articles.index',['category_id'=>$category->id])}}">{{$category->articles_count}}</a>
-                                </td>
+                    <td class="row d-flex">
 
-                                <td style="width: 180px;">
-                                    @can('categories-update')
-                                        <a href="{{route('admin.categories.edit',['category'=>$category->id])}}">
-                                            <span class="btn  btn-outline-success btn-sm font-1 mx-1">
-                                                <span class="fas fa-wrench "></span> تحكم
-                                            </span>
-                                        </a>
-                                    @endcan
-                                    @can('categories-delete')
-                                        <form method="POST" action="{{route('admin.categories.destroy',['category'=>$category->id])}}"
-                                              class="d-inline-block">@csrf @method("DELETE")
-                                            <button class="btn  btn-outline-danger btn-sm font-1 mx-1"
-                                                    onclick="var result = confirm('هل أنت متأكد من عملية الحذف ؟');if(result){}else{event.preventDefault()}">
-                                                <span class="fas fa-trash "></span> حذف
-                                            </button>
-                                        </form>
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-12 p-3">
-                {{$categories->appends(request()->query())->render()}}
-            </div>
-        </div>
-    </div>
+                        <x-form.action-button :route="route('admin.categories.edit',['category'=>$category->id])"
+                                              class="btn-outline-primary" icon="fal fa-edit" permission="categories-update"
+                                              :title="trans('admin.update')"
+                        />
+
+                        <x-form.action-button
+                            class="btn-outline-danger" icon="fal fa-trash" permission="categories-delete"
+                            :delete-form="true" model-name="categories"
+                            :target-model="$category"
+                            :title="trans('admin.delete')"
+                        />
+
+                    </td>
+                </tr>
+            @endforeach
+
+        </x-form.table>
+    </x-form.main>
+
 @endsection

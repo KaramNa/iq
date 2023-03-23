@@ -44,12 +44,12 @@ class Article extends Model implements HasMedia, TranslatableContract
         return $this->hasMany(\App\Models\ArticleComment::class, 'article_id');
     }
 
-    public function main_image($type = 'thumb')
+    public function image($type = 'thumb')
     {
-        if ($this->main_image == null) {
+        if ($this->image == null) {
             return env('DEFAULT_IMAGE');
         } else {
-            return env("STORAGE_URL") . '/' . \MainHelper::get_conversion($this->main_image, $type);
+            return env("STORAGE_URL") . '/' . \MainHelper::get_conversion($this->image, $type);
         }
     }
 

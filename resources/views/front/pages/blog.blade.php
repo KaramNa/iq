@@ -33,7 +33,7 @@
                                 <div class="card shadow-lg">
                                     <figure class="card-img-top overlay overlay-1"><a
                                             href="{{route('article.show',$article->translateOrDefault()->slug)}}"> <img
-                                                src="{{ $article->main_image() }}"
+                                                src="{{ $article->image() }}"
                                                 alt="{{ $article->translateOrDefault()->title }}" class="article-img"/></a>
                                         <figcaption>
                                             <h5 class="from-top mb-0 text-center display-3">@lang('See more')</h5>
@@ -45,7 +45,7 @@
                                                 @foreach($article->categories as $article_category)
                                                     @if($loop->index<3)
                                                         <a href="{{route('category.show',$article_category)}}"
-                                                           class="hover" rel="category">{{$article_category->title}}</a>
+                                                           class="hover" rel="category">{{$article_category->name}}</a>
                                                     @endif
                                                 @endforeach
 

@@ -19,7 +19,7 @@ class Category extends Model implements HasMedia
     public $guarded = ['id', 'created_at', 'updated_at'];
     public $appends = ['url'];
 
-    public array $translatedAttributes = ['title', 'slug', 'description', 'meta_description'];
+    public array $translatedAttributes = ['name', 'slug', 'description', 'meta_description'];
 
 
     public function getRouteKeyName()

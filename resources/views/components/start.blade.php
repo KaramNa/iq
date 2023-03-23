@@ -5,7 +5,7 @@
         }
     </style>
     <div class="container">
-        <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
+           <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
             <div class="col-lg-5 position-relative order-lg-2 px-0">
                 <div class="shape primary rellax w-16 h-20" data-rellax-speed="1"
                      style="top: 3rem; left: 5.5rem"></div>

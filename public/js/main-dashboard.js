@@ -22,14 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
     $(".aside a[href='" + window.location.href + "']").addClass('active');
 
     $('input[required],select[required],textarea[required]').parent().parent().find('>label').append('<span style="color:red;font-size:16px">*</span>');
-    $("[name='title'],[name='slug'],[name='meta_description']").on('keypress', function () {
+    let $charCount = $(".char-counts");
+    $charCount.on('keypress', function () {
         $(this).parent().find('.last_appended_counter').remove();
-        $(this).parent().append('<div class="col-12 p-2 last_appended_counter"><span class="d-inline-block" style="font-size:13px">عدد الحروف <span style="font-weight:bolder;color:#007469;font-size:15px">' + $(this).val().length + '</span> حرفاً</span></div>');
+        $(this).parent().append('<div class="col-12 p-2 last_appended_counter"><span class="d-inline-block" style="font-size:13px"><span style="font-weight:bolder;color:#007469;font-size:15px">' + $(this).val().length + '</span> Characters</span></div>');
     });
 
-    $("[name='title'],[name='slug'],[name='description_ar'],[name='description_en'],[name='meta_description']").append(function () {
+    $charCount.append(function () {
         $(this).parent().find('.last_appended_counter').remove();
-        $(this).parent().append('<div class="col-12 p-2 last_appended_counter"><span class="d-inline-block" style="font-size:13px">عدد الحروف <span style="font-weight:bolder;color:#007469;font-size:15px">' + $(this).val().length + '</span> حرفاً</span></div>');
+        $(this).parent().append('<div class="col-12 p-2 last_appended_counter"><span class="d-inline-block" style="font-size:13px"><span style="font-weight:bolder;color:#007469;font-size:15px">' + $(this).val().length + '</span> Characters</span></div>');
     });
     $(document).ready(function () {
         $('.select2-select').select2();
