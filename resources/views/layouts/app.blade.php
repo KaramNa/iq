@@ -54,6 +54,7 @@
     @yield('styles')
 </head>
 <body style="background:#eef4f5;margin-top: 65px;" class="body">
+<h1><i class="fa"></i>&#xf1a1;</h1>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3ZJG84"

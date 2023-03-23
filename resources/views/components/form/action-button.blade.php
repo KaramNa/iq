@@ -14,7 +14,7 @@
        @if ($deleteForm)
            onclick='let result = confirm("{{ trans('admin.delete_confirmation') }}");if (result) {$("#{{ $modelName }}_delete_{{$targetModel->id}}").submit();}'
         @endif
-        {{ $attributes->class(['btn btn-sm mx-1']) }}>
+        {{ $attributes->class(['btn btn-sm mx-1 mb-1']) }}>
         <i class="{{ $icon }}"></i>
     </a>
 @endcan

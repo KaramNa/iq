@@ -132,7 +132,7 @@
                                                     <div class="comment-header d-md-flex align-items-center">
                                                         <div class="d-flex align-items-center">
                                                             <figure class="user-avatar ms-2 me-0">
-                                                                <img class="rounded-circle" alt=""
+                                                                <img class="rounded-circle" alt="avatar"
                                                                      src="{{$comment->user==null?env('DEFAULT_IMAGE_AVATAR'):$comment->user->getUserAvatar()}}"
                                                                      style="width:40px;height:40px" alt="avatar"/>
                                                             </figure>
