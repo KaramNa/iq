@@ -1,4 +1,4 @@
-@props(['modelName', 'label', 'route', 'permission'])
+@props(['modelName', 'label', 'route', 'permission' => ''])
 
 <div class="d-flex justify-content-between">
 

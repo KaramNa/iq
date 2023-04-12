@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 $messages = [
@@ -12,11 +12,12 @@ $messages = [
 
 ];
 
-// Entity Name => Display Text 
+// Entity Name => Display Text
 $entities = [
     'article' => 'المقال',
     'category' => 'القسم',
     'contact' => 'طلب التواصل',
+    'test-taker' => 'متقدم لاختبار'
 ];
 
 foreach ($entities as $entity_name => $display_text) {

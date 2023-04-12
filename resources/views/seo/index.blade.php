@@ -160,10 +160,12 @@
                     ,
 
 
+
                 @endif
             @endif
         @endforeach
         ],
+
 
 
 
@@ -184,6 +186,7 @@
             "telephone": "{{$website_settings['phone']}}",
             "contactType": "billing support"
         }
+
 
 
 
@@ -210,6 +213,7 @@
         "name": "{{$website_settings['website_name']}}"
     }
 }
+
 
 
 

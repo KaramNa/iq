@@ -1,6 +1,7 @@
 <?php
 # Backend Controllers
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Livewire\TakeTest;
 use App\Models\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -166,7 +167,6 @@ Route::group(
         Route::get('sitemaps/links', [SiteMapController::class, 'custom_links']);
         Route::get('sitemaps/{name}/{page}/sitemap.xml', [SiteMapController::class, 'viewer']);
 
-
         Route::get('/', [FrontController::class, 'index'])->name('home');
         Route::view('/contact', 'front.pages.contact')->name('contact');
         Route::get('/page/{page}', [FrontController::class, 'page'])->name('page.show');
@@ -174,7 +174,12 @@ Route::group(
         Route::get('/category/{category}', [FrontController::class, 'category'])->name('category.show');
         Route::get('/article/{slug}', [FrontController::class, 'article'])->name('article.show');
         Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
-        Route::get('/tests', [FrontController::class, 'tests'])->name('tests');
+        Route::get('/tests', [FrontController::class, 'showTests'])->name('tests');
+        Route::get('/test/{slug}/prepare-result', [FrontController::class, 'prepareResult'])->name('test.prepare.result');
+        Route::get('/test/{slug}/result', [FrontController::class, 'showResult'])->name('test.result');
+        Route::get('/take-test/{slug}', TakeTest::class)->name('take.test');
+        Route::get('/chart-data', [\Modules\IQTest\Http\Controllers\TestController::class, 'getData']);
+
         Route::post('/contact', [FrontController::class, 'contact_post'])->name('contact-post');
         Route::post('/comment', [FrontController::class, 'comment_post'])->name('comment-post');
     }

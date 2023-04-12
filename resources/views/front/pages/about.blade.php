@@ -15,3 +15,8 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        $('#share-bar').share();
+    </script>
+@endsection

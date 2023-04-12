@@ -1,4 +1,4 @@
-@props(['page_title' => __('admin.dashboard')])
+@props(['page_title' => trans('admin.dashboard')])
     <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -180,16 +180,7 @@
     }
 </style>
 @yield('after-body')
-{{--<div class="col-12 justify-content-end d-flex">--}}
-{{--    @if($errors->any())--}}
-{{--        <div class="col-12" style="position: absolute;top: 80px;left: 10px;">--}}
-{{--            {!! implode('', $errors->all('<div class="alert-click-hide alert alert-danger alert alert-danger col-9 col-xl-3 rounded-0 mb-1" style="position: fixed!important;z-index: 11;opacity:.9;left:25px;cursor:pointer;" onclick="$(this).fadeOut();">:message</div>')) !!}--}}
-{{--        </div>--}}
-{{--    @endif--}}
-{{--</div>--}}
-@php
-    $plugins = \Nwidart\Modules\Facades\Module::allEnabled();
-@endphp
+
 <form method="POST" action="{{route('logout')}}" id="logout-form" class="d-none">@csrf</form>
 <div class="col-12 d-flex">
     <div style="width: 260px;background: #ddeaea;min-height: 100vh;position: fixed;z-index: 900" class="aside active">
@@ -214,264 +205,86 @@
         </div>
         <div class="col-12 px-0">
 
-
             <div class="col-12 px-3 aside-menu" style="height: calc(100vh - 260px);overflow: auto;">
 
-                <a href="{{route('admin.index')}}" class="col-12 px-0">
-                    <div class="col-12 item-container px-0 d-flex">
-                        <div style="width: 50px" class="px-3 text-center">
-                            <span class="fal fa-home font-2"> </span>
-                        </div>
-                        <div style="width: calc(100% - 50px)" class="px-2 item-container-title">
-                            @lang('admin.dashboard')
-                        </div>
-                    </div>
-                </a>
-
+                <x-aside-item :text="trans('admin.dashboard')" :route="route('admin.index')" icon="fal fa-home"/>
 
                 @can('roles-read')
-                    <a href="{{route('admin.roles.index')}}" class="col-12 px-0">
-                        <div class="col-12 item-container px-0 d-flex ">
-                            <div style="width: 50px" class="px-3 text-center">
-                                <span class="fal fa-key font-2"> </span>
-                            </div>
-                            <div style="width: calc(100% - 50px)" class="px-2 item-container-title">
-                                @lang('admin.roles')
-                            </div>
-                        </div>
-                    </a>
+                    <x-aside-item :text="trans('admin.roles')" :route="route('admin.roles.index')" icon="fal fa-key"/>
                 @endcan
+
                 @can('users-read')
-                    <a href="{{route('admin.users.index')}}" class="col-12 px-0">
-                        <div class="col-12 item-container px-0 d-flex ">
-                            <div style="width: 50px" class="px-3 text-center">
-                                <span class="fal fa-users font-2"> </span>
-                            </div>
-                            <div style="width: calc(100% - 50px)" class="px-2 item-container-title">
-                                @lang('admin.users')
-                            </div>
-                        </div>
-                    </a>
+                    <x-aside-item :text="trans('admin.users')" :route="route('admin.users.index')" icon="fal fa-users"/>
                 @endcan
 
-                @foreach($plugins as $plugin)
-                    @if($plugin->get('type')=="main")
-                        @can($plugin->get('route').'-read')
-                            <a href="{{route('admin.'.$plugin->get('route').'.index')}}" class="col-12 px-0">
-                                <div class="col-12 item-container px-0 d-flex ">
-                                    <div style="width: 50px" class="px-3 text-center">
-                                        <span class="{{$plugin->get('icon')}} font-2"> </span>
-                                    </div>
-                                    <div style="width: calc(100% - 50px)" class="px-2 item-container-title">
-                                        {{$plugin->get('title')}}
-                                    </div>
-                                </div>
-                            </a>
-                        @endcan
-                    @endif
-                @endforeach
+                <x-item-container :text="trans('admin.content')" icon="fal fa-newspaper">
 
-                <div class="col-12 px-0" style="cursor: pointer;">
-                    <div class="col-12 item px-0 d-flex row ">
-                        <div class="col-12 d-flex px-0 item-container">
-                            <div style="width: 50px" class="px-3 text-center">
-                                <span class="fal fa-newspaper font-2"> </span>
-                            </div>
-                            <div style="width: calc(100% - 50px)" class="px-2 item-container-title has-sub-menu">
-                                @lang('admin.content')
-                            </div>
-                        </div>
-                        <div class="col-12 px-0">
-                            <ul class="sub-item font-1" style="list-style:none;">
-                                @can('categories-read')
-                                    <li>
-                                        <a href="{{route('admin.categories.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-tag px-2" style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.categories')
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('articles-read')
-                                    <li>
-                                        <a href="{{route('admin.articles.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-book px-2" style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.articles')
-                                        </a>
-                                    </li>
-                                @endcan
+                    <x-list-item permission="categories-read" :text="trans('admin.categories')" icon="fal fa-tag"
+                                 :route="route('admin.categories.index')"/>
 
-                                @can('comments-read')
-                                    <li>
-                                        <a href="{{route('admin.article-comments.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-comments px-2"
-                                                  style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.comments')
-                                            @php
-                                                $article_comments = \App\Models\ArticleComment::where('reviewed',0)->count();
-                                            @endphp
-                                            @if($article_comments)
-                                                <span
-                                                    style="background: #d34339;border-radius: 2px;color:var(--background-1);display: inline-block;font-size: 11px;text-align: center;padding: 1px 5px;margin: 0px 8px">{{$article_comments}}</span>
+                    <x-list-item permission="articles-read" :text="trans('admin.articles')" icon="fal fa-book"
+                                 :route="route('admin.articles.index')"/>
 
-                                            @endif
+                    @php
+                        $article_comments = \App\Models\ArticleComment::where('reviewed',0)->count();
+                    @endphp
 
-                                        </a>
-                                    </li>
-                                @endcan
+                    <x-list-item permission="comments-read" :text="trans('admin.comments')" icon="fal fa-comments"
+                                 :route="route('admin.article-comments.index')" :count-label="$article_comments"/>
 
-                                @can('announcements-read')
-                                    <li>
-                                        <a href="{{route('admin.announcements.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-bullhorn px-2"
-                                                  style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.announcements')
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('pages-read')
-                                    <li>
-                                        <a href="{{route('admin.pages.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-file-invoice px-2"
-                                                  style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.pages')
-                                        </a>
-                                    </li>
-                                @endcan
+                    <x-list-item permission="announcements-read" :text="trans('admin.announcements')"
+                                 icon="fal fa-bullhorn"
+                                 :route="route('admin.announcements.index')"/>
 
-                                @can('menus-read')
-                                    <li>
-                                        <a href="{{route('admin.menus.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-list px-2" style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.menus')
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('faqs-read')
-                                    <li>
-                                        <a href="{{route('admin.faqs.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-question px-2"
-                                                  style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.faqs')
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('redirections-read')
-                                    <li>
-                                        <a href="{{route('admin.redirections.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-directions px-2"
-                                                  style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.redirect')
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('tags-read')
-                                    <li>
-                                        <a href="{{route('admin.tags.index')}}" style="font-size: 16px;">
-                                            <span class="fal fa-tags px-2" style="width: 28px;font-size: 15px;"></span>
-                                            @lang('admin.tags')
-                                        </a></li>
-                                @endcan
+                    <x-list-item permission="pages-read" :text="trans('admin.pages')" icon="fal fa-file-invoice"
+                                 :route="route('admin.pages.index')"/>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    <x-list-item permission="menus-read" :text="trans('admin.menus')" icon="fal fa-list"
+                                 :route="route('admin.menus.index')"/>
 
+                    <x-list-item permission="faqs-read" :text="trans('admin.faqs')" icon="fal fa-question"
+                                 :route="route('admin.faqs.index')"/>
+
+                    <x-list-item permission="redirections-read" :text="trans('admin.redirect')" icon="fal fa-directions"
+                                 :route="route('admin.redirections.index')"/>
+
+                    <x-list-item permission="tags-read" :text="trans('admin.tags')" icon="fal fa-tags"
+                                 :route="route('admin.tags.index')"/>
+
+                </x-item-container>
+
+                <x-item-container :text="trans('admin.tests')" icon="fal fa-brain">
+
+                    <x-list-item permission="test-takers-read" :text="trans('admin.test_takers')"
+                                 :route="route('admin.test-taker.index')" icon="fal fa-graduation-cap"/>
+
+                    <x-list-item permission="test-categories-read" :text="trans('admin.categories')"
+                                 :route="route('admin.test-categories.index')" icon="fal fa-tag"/>
+
+                    <x-list-item permission="tests-read" :text="trans('admin.tests')"
+                                 :route="route('admin.tests.index')" icon="fal fa-puzzle-piece"/>
+
+
+
+                </x-item-container>
 
                 @can('contacts-read')
-                    <a href="{{route('admin.contacts.index')}}" class="col-12 px-0">
-                        <div class="col-12 item-container px-0 d-flex ">
-                            <div style="width: 50px" class="px-3 text-center">
-                                <span class="fal fa-phone font-2"> </span>
-                            </div>
-                            <div style="width: calc(100% - 50px)" class="px-2 item-container-title">
-                                @lang('admin.contact')
-                                @php
-                                    $contacts_count = \App\Models\Contact::where('status','PENDING')->count();
-                                @endphp
-                                @if($contacts_count)
-                                    <span
-                                        style="background: #d34339;border-radius: 2px;color:var(--background-1);display: inline-block;font-size: 11px;text-align: center;padding: 1px 5px;margin: 0px 8px">{{$contacts_count}}</span>
+                    @php
+                        $contacts_count = \App\Models\Contact::where('status','PENDING')->count();
+                    @endphp
 
-                                @endif
-                            </div>
-                        </div>
-                    </a>
+                    <x-aside-item :text="trans('admin.contact')" :route="route('admin.contacts.index')"
+                                  :count-label="$contacts_count" icon="fal fa-phone"/>
+
                 @endcan
-
-
 
                 @can('settings-update')
-                    <a href="{{route('admin.settings.index')}}" class="col-12 px-0">
-                        <div class="col-12 item-container px-0 d-flex ">
-                            <div style="width: 50px" class="px-3 text-center">
-                                <span class="fal fa-wrench font-2"> </span>
-                            </div>
-                            <div style="width: calc(100% - 50px)" class="px-2 item-container-title">
-                                @lang('admin.settings')
-                            </div>
-                        </div>
-                    </a>
+                    <x-aside-item :text="trans('admin.settings')" :route="route('admin.settings.index')"
+                                  icon="fal fa-wrench"/>
                 @endcan
 
-                @can('plugins-read')
-                    <div class="col-12 px-0" style="cursor: pointer;">
-                        <div class="col-12 item px-0 d-flex row ">
-                            <div class="col-12 d-flex px-0 item-container">
-                                <div style="width: 50px" class="px-3 text-center">
-                                    <span class="far fa-box-open font-2" style="color:#ff9800"> </span>
-                                </div>
-                                <div style="width: calc(100% - 50px)" class="px-2 item-container-title has-sub-menu">
-                                    @lang('admin.plugins')
-                                </div>
-                            </div>
-                            <div class="col-12 px-0">
-                                <ul class="sub-item font-1" style="list-style:none;">
-                                    @can('plugins-read')
-                                        <li>
-                                            <a href="{{route('admin.plugins.index')}}" style="font-size: 16px;">
-                                                <span class="fal fa-box-open px-2"
-                                                      style="width: 28px;font-size: 15px;"></span>
-                                                @lang('admin.all_plugins')
+                <x-aside-item :text="trans('lang.logout')" icon="fal fa-sign-out-alt" logout="true"/>
 
-                                                @if(count($plugins))
-                                                    <span
-                                                        style="background: #d34339;border-radius: 2px;color:var(--background-1);display: inline-block;font-size: 11px;text-align: center;padding: 1px 5px;margin: 0px 8px">{{count($plugins)}}</span>
-
-                                                @endif
-
-                                            </a>
-                                        </li>
-                                    @endcan
-
-                                    @foreach($plugins as $plugin)
-                                        @if($plugin->get('type')=="plugin")
-                                            @can($plugin->get('route').'-read')
-                                                <li><a href="{{route('admin.teams.index')}}"
-                                                       style="font-size: 16px;"><span
-                                                            class="{{$plugin->get('icon')}} px-2"
-                                                            style="width: 28px;font-size: 15px;"></span> {{$plugin->get('title')}}
-                                                    </a></li>
-                                            @endcan
-                                        @endif
-                                    @endforeach
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                @endcan
-
-                <a href="#" class="col-12 px-0" onclick="document.getElementById('logout-form').submit();">
-                    <div class="col-12 item-container px-0 d-flex ">
-                        <div style="width: 50px" class="px-3 text-center">
-                            <span class="fal fa-sign-out-alt font-2"> </span>
-                        </div>
-                        <div style="width: calc(100% - 50px)" class="px-2 item-container-title">
-                            @lang('lang.logout')
-                        </div>
-                    </div>
-                </a>
             </div>
         </div>
 
@@ -484,7 +297,7 @@
                 <span class="fal fa-bars font-4"></span>
             </div>
             <div class="col-12 px-0 d-flex justify-content-end  " style="height: 60px;">
-                <x-language-switch />
+                <x-language-switch/>
                 <div class="btn-group" id="notificationDropdown">
 
                     <div class="col-12 px-0 d-flex justify-content-center align-items-center btn  "

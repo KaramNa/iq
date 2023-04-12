@@ -14,7 +14,7 @@
 
     var helpers = {
       channels: {
-        facebook: {url: 'https://www.facebook.com/share.php?u=|u|'},
+        facebook: {url: 'https://www.facebook.com/sharer/sharer.php?u=|u|'},
         twitter: {url: 'https://twitter.com/share?url=|u|&text=|140|'},
         linkedin: {url: 'https://www.linkedin.com/shareArticle?mini=true&url=|u|&title=|t|&summary=|d|'},
         tumblr: {url: 'https://www.tumblr.com/share?v=3&u=|u|'},

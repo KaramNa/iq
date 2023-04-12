@@ -10,7 +10,12 @@ use App\Models\Contact;
 use App\Models\ArticleComment;
 use App\Models\Page;
 use App\Models\Category;
-
+use CobraProjects\Arabic\Arabic;
+use Modules\IQTest\Models\Test;
+use Modules\IQTest\Models\TestCategory;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Response;
 
 class FrontController extends Controller
 {
@@ -195,9 +200,126 @@ class FrontController extends Controller
         return view('front.pages.blog', compact('articles'));
     }
 
-    public function tests()
+    public function showTests()
     {
-        return view('front.tests');
+        $tests = Test::all();
+        return view('front.pages.tests', compact('tests'));
+    }
+
+    public function prepareResult($slug)
+    {
+        if (!session('score')) {
+            return redirect()->route('tests');
+        }
+        return view('front.pages.prepare-result', compact('slug'));
+    }
+
+    function generateCertificate($name, $score, $percent)
+    {
+        if ($this->isArabicOrEnglish($name) === 'ar' || ($name === '' && app()->getLocale() === 'ar'))
+        {
+            $textWidth = intval(mb_strlen($name));
+
+            $Arabic = new Arabic('Glyphs');
+
+            $name = $Arabic->utf8Glyphs($name);
+
+            $template = Image::make(public_path('images/certificate-template_ar.png'));
+
+            $x = $template->width() - $textWidth - 50;
+
+            $template->text($name, $x, 170, function ($font) {
+                $font->file(public_path('fonts/kufi-fixed/NotoKufiArabic-Bold.ttf'));
+                $font->size(35);
+                $font->color('#033467');
+                $font->align('right');
+                $font->valign('bottom');
+            });
+            // Add the name and score to the certificate
+            $template->text($score, 850, 450, function ($font) {
+                $font->file(public_path('fonts/Cairo-Regular.ttf'));
+                $font->size(200);
+                $font->color('#555555');
+                $font->align('center');
+                $font->valign('bottom');
+            });
+
+            $template->text($percent, 1075, 742, function ($font) {
+                $font->file(public_path('fonts/Cairo-Regular.ttf'));
+                $font->size(50);
+                $font->color('#545490');
+                $font->align('center');
+                $font->valign('bottom');
+
+            });
+            $filename = session()->getId() . '.png';
+            $template->save(public_path('certificates/' . $filename));
+
+            return $filename;
+
+        }
+        elseif ($this->isArabicOrEnglish($name) === 'en' || ($name === '' && app()->getLocale() === 'en')){
+            $template = Image::make(public_path('images/certificate-template_en.png'));
+
+            $template->text($name, 60, 160, function ($font) {
+                $font->file(public_path('fonts/Cairo-Regular.ttf'));
+                $font->size(45);
+                $font->color('#033467');
+                $font->align('left');
+                $font->valign('bottom');
+            });
+            // Add the name and score to the certificate
+            $template->text($score, 300, 450, function ($font) {
+                $font->file(public_path('fonts/Cairo-Regular.ttf'));
+                $font->size(200);
+                $font->color('#555555');
+                $font->align('center');
+                $font->valign('bottom');
+            });
+
+            $template->text($percent, 200, 750, function ($font) {
+                $font->file(public_path('fonts/Cairo-Regular.ttf'));
+                $font->size(50);
+                $font->color('#545490');
+                $font->align('center');
+                $font->valign('bottom');
+            });
+            $filename = session()->getId() . '.png';
+            $template->save(public_path('certificates/' . $filename));
+
+            return $filename;
+        }
+
+    }
+
+    public function showResult($slug)
+    {
+        $score = session('score');
+        $percentile = 0;
+        $name = session('name');
+        if ($score < 70 || $score > 130) {
+            $percentile = 2.2;
+        } elseif (in_array($score, range(70, 79)) || in_array($score, range(120, 130))) {
+            $percentile = 6.7;
+        } elseif (in_array($score, range(80, 89)) || in_array($score, range(110, 119))) {
+            $percentile = 16.1;
+        } elseif (in_array($score, range(90, 109))) {
+            $percentile = 50;
+        }
+
+        $certificate = $this->generateCertificate($name, $score, $percentile);
+        $test = Test::whereTranslation('slug', $slug)->firstOrFail();
+        if (!session('score')) {
+            return redirect()->route('tests');
+        }
+        $category = Category::whereTranslation('slug', 'improve-your-iq')->first();
+        $articles = $category?->articles()->take(6)->get() ?? [];
+        return view('front.pages.result', compact('articles', 'test', 'certificate'));
+    }
+
+    public function exam_instructions($slug)
+    {
+        return view('front.pages.instructions');
     }
 
     public function views_increase_article(Article $article)
@@ -219,6 +341,28 @@ class FrontController extends Controller
             ]);
             $article->update(['views' => $article->views + 1]);
         }
+    }
+
+    function isArabicOrEnglish($text)
+    {
+        // Match Arabic characters (Unicode range: 0600–06FF)
+        $arabicRegex = '/[\x{0600}-\x{06FF}]/u';
+
+        // Match English characters (Unicode range: 0000–007F)
+        $englishRegex = '/[\x{0000}-\x{007F}]/u';
+
+        // Check if the text contains Arabic characters
+        if (preg_match($arabicRegex, $text)) {
+            return 'ar';
+        }
+
+        // Check if the text contains English characters
+        if (preg_match($englishRegex, $text)) {
+            return 'en';
+        }
+
+        // The text contains neither Arabic nor English characters
+        return 'Unknown';
     }
 }
 

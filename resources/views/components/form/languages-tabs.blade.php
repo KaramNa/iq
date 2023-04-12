@@ -1,14 +1,15 @@
-<ul class="nav nav-pills mb-3 pe-0" id="pills-tab" role="tablist">
-    @foreach(LaravelLocalization::getSupportedLocales() as $key => $lang)
+@props(['key' => ''])
+<ul class="nav nav-pills mb-3 pe-0" id="pills-tab{{ $key }}" role="tablist">
+    @foreach(LaravelLocalization::getSupportedLocales() as $code => $lang)
         <li class="nav-item" role="presentation">
             <button
-                id="pills-{{ $key }}-tab"
-                class="nav-link {{ app()->getLocale() == $key ? 'active' : ''}}"
+                id="pills-{{ $code }}-tab{{ $key }}"
+                class="nav-link {{ app()->getLocale() == $code ? 'active' : ''}}"
                 data-bs-toggle="pill"
-                data-bs-target="#pills-{{ $key }}"
+                data-bs-target="#pills-{{ $code }}{{ $key }}"
                 type="button"
                 role="tab"
-                aria-controls="pills-{{ $key }}"
+                aria-controls="pills-{{ $code }}"
                 aria-selected="true"
             >{{ $lang['native'] }}
             </button>

@@ -39,7 +39,6 @@
         @can('announcements-read')
             <x-dashboard.info-box text="admin.announcements" count="{{\App\Models\Announcement::count()}}"
                                   route="admin.announcements.index"/>
-
         @endcan
 
         <div class="col-12 px-2 py-2">

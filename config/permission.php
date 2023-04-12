@@ -168,9 +168,9 @@ return [
             'user-roles' => 'r,u',
             'roles' => 'c,r,u,d',
             'tags' => 'c,r,u,d',
-            'plugins'=>'c,r,u,d',
+            'plugins' => 'c,r,u,d',
             'notifications' => 'c,r,u,d',
-            'error-reports'=>"c,r,u,d",
+            'error-reports' => "c,r,u,d",
             'articles' => 'c,r,u,d',
             'categories' => 'c,r,u,d',
             'contacts' => 'c,r,u,d',
@@ -183,6 +183,10 @@ return [
             'settings' => 'u',
             'traffics' => 'c,r,u,d',
             'profile' => 'r,u',
+            'test-takers' => 'r,d',
+            'test-categories' => 'c,r,u,d',
+            'tests' => 'c,r,u,d',
+
         ],
         'admin' => [
             'users' => 'c,r,u,d',
@@ -191,7 +195,7 @@ return [
             'roles' => 'r',
             'tags' => 'c,r,u,d',
             'notifications' => 'c,r,u,d',
-            'error-reports'=>"c,r,u,d",
+            'error-reports' => "c,r,u,d",
             'articles' => 'c,r,u,d',
             'categories' => 'c,r,u,d',
             'contacts' => 'c,r,u,d',
@@ -203,14 +207,18 @@ return [
             'hub-files' => 'c,r,u,d',
             'traffics' => 'c,r,u,d',
             'profile' => 'r,u',
+            'test-takers' => 'r,d',
+            'test-categories' => 'c,r,u,d',
+            'tests' => 'c,r,u,d',
+
+
         ],
-        'customer_support'=>[
+        'customer_support' => [
             'profile' => 'r,u',
-            'articles'=>"r",
-            'faqs'=>"r",
-            'announcements'=>"r",
-            'notifications'=>"r",
-            'contacts'=>"c",
+            'articles' => "r",
+            'faqs' => "r",
+            'announcements' => "r",
+            'notifications' => "r",
             'contacts' => 'c,r,u,d',
         ],
         'editor' => [
@@ -221,21 +229,19 @@ return [
             'categories' => 'c,r,u,d',
             'tags' => 'c,r,u,d',
             'profile' => 'r,u',
-            'articles'=>"r",
-            'faqs'=>"r",
-            'announcements'=>"r",
-            'notifications'=>"r",
-            'contacts'=>"c",
+            'announcements' => "r",
+            'notifications' => "r",
+            'contacts' => "c",
             'articles' => 'c,r,u,d',
             'faqs' => 'c,r,u,d',
         ],
         'user' => [
             'profile' => 'r,u',
-            'articles'=>"r",
-            'faqs'=>"r",
-            'announcements'=>"r",
-            'notifications'=>"r",
-            'contacts'=>"c"
+            'articles' => "r",
+            'faqs' => "r",
+            'announcements' => "r",
+            'notifications' => "r",
+            'contacts' => "c"
         ],
     ],
 
@@ -245,5 +251,5 @@ return [
         'u' => 'update',
         'd' => 'delete'
     ]
-    
+
 ];

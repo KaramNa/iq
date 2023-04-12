@@ -3,7 +3,9 @@ import favico from 'favico.js';
 import toastr from 'toastr';
 import { Fancybox } from "@fancyapps/ui";
 
+
 import '/public/js/bootstrap.bundle.min.js';
+
 // import '/public/js/jquery-social-share-bar.js';
 /*import '/public/js/validatorjs.min.js';*/
 import '/public/js/main.js';

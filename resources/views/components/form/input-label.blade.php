@@ -6,7 +6,6 @@
     <div class="mt-2">
         {{$slot}}
     </div>
-
 </div>
 @error(( isset($key) ? $key . '.' : '' ) . $name)
 <div class="text-danger">

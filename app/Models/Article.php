@@ -6,6 +6,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
+use MainHelper;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
@@ -19,29 +20,29 @@ class Article extends Model implements HasMedia, TranslatableContract
 
     public array $translatedAttributes = ['title', 'slug', 'description', 'meta_description'];
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
 
     public function item_seens()
     {
-        return $this->hasMany(\App\Models\ItemSeen::class, 'type_id', 'id')->where('type', "ARTICLE");
+        return $this->hasMany(ItemSeen::class, 'type_id', 'id')->where('type', "ARTICLE");
     }
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function categories()
     {
-        return $this->belongsToMany(\App\Models\Category::class, 'article_categories');
+        return $this->belongsToMany(Category::class, 'article_categories');
     }
 
     public function comments()
     {
-        return $this->hasMany(\App\Models\ArticleComment::class, 'article_id');
+        return $this->hasMany(ArticleComment::class, 'article_id');
     }
 
     public function image($type = 'thumb')
@@ -49,13 +50,13 @@ class Article extends Model implements HasMedia, TranslatableContract
         if ($this->image == null) {
             return env('DEFAULT_IMAGE');
         } else {
-            return env("STORAGE_URL") . '/' . \MainHelper::get_conversion($this->image, $type);
+            return env("STORAGE_URL") . '/' . MainHelper::get_conversion($this->image, $type);
         }
     }
 
     public function tags()
     {
-        return $this->belongsToMany(\App\Models\Tag::class, 'article_tags');
+        return $this->belongsToMany(Tag::class, 'article_tags');
     }
 
     public function registerMediaConversions(Media $media = null): void

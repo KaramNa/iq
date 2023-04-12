@@ -1,4 +1,4 @@
-@props(['name', 'label', 'options', '$firstOption', 'targetModel' => null, 'relation' => null])
+@props(['name', 'label', 'options', 'firstOption', 'targetModel' => null, 'relation' => null])
 <x-form.input-label :name="$name" :label="$label">
     <div class="col-6">
         <select name="{{$name}}"
@@ -14,7 +14,7 @@
                 @if (str_contains($attributes, 'select2-select'))
                     @selected(in_array($option->id, old(str_replace(['[',']'], '', $name) , $targetModel?->{$relation}->pluck('id')->toArray()) ?? []))
                     @else
-                    {{ old($name, $targetModel->{$name} ?? '') == "$option->id" ? "selected" : "" }}
+                    @selected(old($name, $targetModel->{$name} ?? '') == "$option->id")
                     @endif
                 >
                 {{ $option->name }}

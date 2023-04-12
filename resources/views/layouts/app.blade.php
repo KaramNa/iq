@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @yield('meta')
     @include('seo.index')
 
     {!!$settings['header_code']!!}
@@ -17,8 +18,7 @@
         @endphp
     @endif
     @vite('resources/css/app.css')
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    <style type="text/css">
+    <style>
         body {
             --bg-main: #fff;
             --bg-second: #f4f4f4;
@@ -50,18 +50,29 @@
         body, * {
             direction: {{ Config::get('app.locale') == 'ar' ? 'rtl' : 'ltr' }};
         }
+
+        .fa-pinterest-p:before {
+            content: "\f231";
+        }
+
+        .fa-tumblr:before {
+            content: "\f173";
+        }
+
+        .fa-reddit-alien:before {
+            content: "\f281";
+        }
     </style>
     @yield('styles')
 </head>
 <body style="background:#eef4f5;margin-top: 65px;" class="body">
-<h1><i class="fa"></i>&#xf1a1;</h1>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3ZJG84"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-<style type="text/css">
+<style>
     #toast-container > div {
         opacity: 1;
     }
@@ -74,118 +85,21 @@
     <main class="p-0 font-2">
         @yield('content')
     </main>
-    <x-share-bar />
+    <x-share-bar/>
 
     <x-footer/>
 </div>
 
-
 @vite('resources/js/app.js')
 @livewireScripts
-@include('layouts.scripts')
-
-@auth
+{{--@include('layouts.scripts')--}}
 
 
-    {{--    <script type="module">--}}
-    {{--        var favicon = new Favico({--}}
-    {{--            bgColor: '#dc0000',--}}
-    {{--            textColor: '#fff',--}}
-    {{--            animation: 'slide',--}}
-    {{--            fontStyle: 'bold',--}}
-    {{--            fontFamily: 'sans',--}}
-    {{--            type: 'circle'--}}
-    {{--        });--}}
-
-    {{--        function get_website_title() {--}}
-    {{--            return $('meta[name="title"]').attr('content');--}}
-    {{--        }--}}
-
-    {{--        var notificationDropdown = document.getElementById('notificationDropdown')--}}
-    {{--        notificationDropdown.addEventListener('show.bs.dropdown', function () {--}}
-    {{--            $.ajax({--}}
-    {{--                method: "POST",--}}
-    {{--                url: "{{route('admin.notifications.see')}}",--}}
-    {{--                data: {_token: "{{csrf_token()}}"}--}}
-    {{--            }).done(function (res) {--}}
-    {{--                $('#dropdown-notifications-icon').fadeOut();--}}
-    {{--                favicon.badge(0);--}}
-    {{--            });--}}
-    {{--        });--}}
-
-    {{--        function append_notification_notifications(msg) {--}}
-    {{--            if (msg.count_unseen_notifications > 0) {--}}
-    {{--                $('#dropdown-notifications-icon').fadeIn(0);--}}
-    {{--                $('#dropdown-notifications-icon').text(msg.count_unseen_notifications);--}}
-    {{--            } else {--}}
-    {{--                $('#dropdown-notifications-icon').fadeOut(0);--}}
-    {{--                favicon.badge(0);--}}
-    {{--            }--}}
-    {{--            $('.notifications-container').empty();--}}
-    {{--            $('.notifications-container').append(msg.response);--}}
-    {{--            $('.notifications-container a').on('click', function () {--}}
-    {{--                window.location.href = $(this).attr('href');--}}
-    {{--            });--}}
-    {{--        }--}}
-
-    {{--        function get_notifications() {--}}
-    {{--            $.ajax({--}}
-    {{--                method: "GET",--}}
-    {{--                url: "{{route('admin.notifications.ajax')}}",--}}
-    {{--                success: function (data, textStatus, xhr) {--}}
-
-    {{--                    favicon.badge(data.notifications.response.count_unseen_notifications);--}}
-
-    {{--                    if (data.alert) {--}}
-    {{--                        var audio = new Audio('{{asset("/sounds/notification.wav")}}');--}}
-    {{--                        audio.play();--}}
-    {{--                    }--}}
-    {{--                    append_notification_notifications(data.notifications.response);--}}
-    {{--                    if (data.notifications.response.count_unseen_notifications > 0) {--}}
-    {{--                        $('title').text('(' + parseInt(data.notifications.response.count_unseen_notifications) + ')' + " " +--}}
-    {{--                            get_website_title());--}}
-
-    {{--                    } else {--}}
-    {{--                        $('title').text(get_website_title());--}}
-    {{--                    }--}}
-    {{--                }--}}
-    {{--            });--}}
-    {{--        }--}}
-
-    {{--        window.focused = 25000;--}}
-    {{--        window.onfocus = function () {--}}
-    {{--            get_notifications();--}}
-    {{--            window.focused = 25000;--}}
-    {{--        };--}}
-    {{--        window.onblur = function () {--}}
-    {{--            window.focused = 60000;--}}
-    {{--        };--}}
-
-    {{--        function get_nots() {--}}
-    {{--            setTimeout(function () {--}}
-    {{--                get_notifications();--}}
-    {{--                get_nots();--}}
-    {{--            }, window.focused);--}}
-    {{--        }--}}
-
-    {{--        get_nots();--}}
-
-    {{--        @if($unreadNotifications!=session('seen_notifications') && $unreadNotifications!=0)--}}
-    {{--        @php--}}
-    {{--            session(['seen_notifications'=>$unreadNotifications]);--}}
-    {{--        @endphp--}}
-    {{--        var audio = new Audio('{{asset("/sounds/notification.wav")}}');--}}
-    {{--        audio.play();--}}
-    {{--        @endif--}}
-    {{--    </script>--}}
-@endauth
-@yield('scripts')
 {!!$settings['footer_code']!!}
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
         integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
-<script src={{ asset("js/jquery-social-share-bar.js") }}></script>
-<script>
-    $('#share-bar').share();
-</script>
+<script src={{ asset("js/jquery-social-share-bar1.js") }}></script>
+
+@yield('scripts')
 </body>
 </html>

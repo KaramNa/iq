@@ -23,13 +23,12 @@ class ArticleController extends Controller
         $this->middleware('can:articles-delete', ['only' => ['delete']]);
     }
 
-
     public function index(Request $request)
     {
         $lang = $request->lang ?? app()->getLocale();
         if ($request->category_id != null) {
-            $categroy = Category::find($request->category_id);
-            $articles = $categroy->articles()->translatedIn($lang)->orderBy('id', 'DESC')->paginate();
+            $category = Category::find($request->category_id);
+            $articles = $category->articles()->translatedIn($lang)->orderBy('id', 'DESC')->paginate();
         } else {
             $articles = Article::where(function ($q) use ($request) {
                 if ($request->id != null) {
@@ -153,7 +152,6 @@ class ArticleController extends Controller
         } else {
             $article->is_published = 1;
         }
-
 
         foreach (LaravelLocalization::getSupportedLocales() as $key => $locale) {
             if ($request->{$key}['title']) {
