@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Answer;
+use App\Models\Question;
+use App\Models\Test;
 use Livewire\Component;
-use Modules\IQTest\Models\Answer;
-use Modules\IQTest\Models\Question;
-use Modules\IQTest\Models\Test;
 
 class TakeTest extends Component
 {
@@ -40,6 +40,7 @@ class TakeTest extends Component
 
     public function mount()
     {
+        session()->regenerate();
         session()->put('name', strtoupper(request()->test_taker_name));
         $this->test = Test::whereTranslation('slug', request()->slug)->firstOrFail();
         $this->questions = Question::where('test_id', $this->test->id)->inRandomOrder()->get();

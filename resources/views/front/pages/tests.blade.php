@@ -22,7 +22,7 @@
                             <img class="img-fluid"
                                  alt="Online IQ Test (Free Version)"
                                  title="What should come next to complete the sequence/pattern of shapes?"
-                                 src="{{ $tests[0]->image() }}">
+                                 src="{{ $tests[0]->image('original') }}">
                         </p>
                     </div>
 
@@ -95,7 +95,7 @@
                             </form>
 
                         @else
-                            <p class="bg-primary p-4 rounded text-white col-sm-6">
+                            <p class="bg-primary p-4 rounded text-white col-sm-12">
                                 @lang('No Questions available yet')
                             </p>
                         @endif

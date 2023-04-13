@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ArticleTranslation;
-use Illuminate\Http\Request;
 use App\Models\Article;
-use App\Models\Tag;
-use App\Models\Contact;
 use App\Models\ArticleComment;
-use App\Models\Page;
 use App\Models\Category;
+use App\Models\Contact;
+use App\Models\Page;
+use App\Models\Tag;
+use App\Models\Test;
 use CobraProjects\Arabic\Arabic;
-use Modules\IQTest\Models\Test;
-use Modules\IQTest\Models\TestCategory;
+use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Response;
 
 class FrontController extends Controller
 {

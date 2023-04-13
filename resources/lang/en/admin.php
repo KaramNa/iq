@@ -102,6 +102,7 @@ return [
     'draft'                  => 'Draft',
     'questions'              => 'Questions',
     'add_question'           => 'Add question',
+    'edit_question'           => 'Edit question',
     'title'                  => 'Title',
     'link'                   => 'Link',
     'actions'                => 'Actions',
@@ -133,7 +134,7 @@ return [
     'not_all_answered'       => 'Take some extra time to think about the questions you haven\'t answered yet.',
     'go_to_result'           => 'Go to result',
     'iq_test_brief'          => 'A free version of IQ test on IQFreeTest.org consists of 20 multiple-choice questions.
-                                 Test-takers have 30 minutes to complete the test which assesses their logical thinking,
+                                 Test-takers have 25 minutes to complete the test which assesses their logical thinking,
                                  verbal reasoning, and spatial perception. The test can be taken from any device without
                                  needing to register or make any payments. Once completed, test-takers receive their IQ score
                                  and a brief overview of their cognitive strengths and weaknesses.',

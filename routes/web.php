@@ -1,42 +1,40 @@
 <?php
 # Backend Controllers
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Livewire\TakeTest;
-use App\Models\Page;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\NotificationsController;
-use App\Http\Controllers\Backend\HelperController;
-use App\Http\Controllers\Backend\TestController;
-use App\Http\Controllers\Backend\ProfileController;
-use App\Http\Controllers\Backend\ArticleController;
+use App\Http\Controllers\Backend\AnnouncementController;
 use App\Http\Controllers\Backend\ArticleCommentController;
-use App\Http\Controllers\Backend\SiteMapController;
-use App\Http\Controllers\Backend\SettingController;
-use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\RedirectionController;
-use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Backend\TrafficsController;
-use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\ContactReplyController;
+use App\Http\Controllers\Backend\FaqController;
+use App\Http\Controllers\Backend\FileController;
+use App\Http\Controllers\Backend\HelperController;
+use App\Http\Controllers\Backend\IQTestController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\MenuLinkController;
-use App\Http\Controllers\Backend\FileController;
-use App\Http\Controllers\Backend\FaqController;
-use App\Http\Controllers\Backend\ContactReplyController;
-use App\Http\Controllers\Backend\AnnouncementController;
-use App\Http\Controllers\Backend\PermissionController;
-use App\Http\Controllers\Backend\UserPermissionController;
-use App\Http\Controllers\Backend\UserRoleController;
-use App\Http\Controllers\Backend\RoleController;
-use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\NotificationsController;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\PluginController;
+use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\QuestionController;
+use App\Http\Controllers\Backend\RedirectionController;
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\SiteMapController;
+use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\TestCategoryController;
+use App\Http\Controllers\Backend\TestTakerController;
+use App\Http\Controllers\Backend\TrafficsController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\UserRoleController;
+use App\Http\Controllers\FrontController;
+use App\Http\Livewire\TakeTest;
+use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 # Frontend Controllers
-use App\Http\Controllers\FrontController;
-use App\Http\Controllers\FrontendProfileController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::group(
@@ -152,6 +150,11 @@ Route::group(
                 Route::get('/create', [NotificationsController::class, 'create'])->name('create');
                 Route::post('/create', [NotificationsController::class, 'store'])->name('store');
             });
+
+            Route::resource('test-taker', TestTakerController::class);
+            Route::resource('test-categories', TestCategoryController::class);
+            Route::resource('tests', IQTestController::class);
+            Route::resource('questions', QuestionController::class);
         });
 
 //
@@ -178,7 +181,7 @@ Route::group(
         Route::get('/test/{slug}/prepare-result', [FrontController::class, 'prepareResult'])->name('test.prepare.result');
         Route::get('/test/{slug}/result', [FrontController::class, 'showResult'])->name('test.result');
         Route::get('/take-test/{slug}', TakeTest::class)->name('take.test');
-        Route::get('/chart-data', [\Modules\IQTest\Http\Controllers\TestController::class, 'getData']);
+        Route::get('/chart-data', [\App\Http\Controllers\Backend\IQTestController::class, 'getData']);
 
         Route::post('/contact', [FrontController::class, 'contact_post'])->name('contact-post');
         Route::post('/comment', [FrontController::class, 'comment_post'])->name('comment-post');

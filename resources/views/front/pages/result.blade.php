@@ -43,6 +43,9 @@
         .linkedin {
             background-color: #0077b5;
         }
+        .download {
+            background-color: #f0b00f;
+        }
 
         .fa {
             font-size: 22px;
@@ -57,13 +60,14 @@
                 <div>
                     <p class="h3 text-center">{{ trans('Be proud of yourself and share your result with your friends') }}</p>
                     <div class="social-media text-center">
-
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('test.result', $test->translate('en')->slug) }}&quote={{ urlencode('Get your IQ score with iqfreetest.org for free') }}"
-                           class="btn-share facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/intent/tweet?url={{ route('test.result', $test->translate('en')->slug) }}&text={{ urlencode('Get your IQ score with iqfreetest.org for free') }}"
-                           class="btn-share twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ route('test.result', $test->translate('en')->slug) }}&title={{ urlencode('Check out my IQ score of ' . session('score')) }}&summary={{ urlencode('Get your IQ score with iqfreetest.org for free') }}&source=LinkedIn"
-                           class="btn-share linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="{{ '/certificates/' . $certificate }}"
+                           class="btn-share download"  download title="Download"><i class="fa fa-download"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('test.result', $test->translate('en')->slug) }}&quote={{ urlencode('I just earned an IQ certificate with a score of ' . session('score') . '!') }}"
+                           class="btn-share facebook" target="_blank" title="share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url={{ route('test.result', $test->translate('en')->slug) }}&text={{ urlencode('I just earned an IQ certificate with a score of ' . session('score') . '!') }}"
+                           class="btn-share twitter" target="_blank" title="share on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ route('test.result', $test->translate('en')->slug) }}&title={{ urlencode('I just earned an IQ certificate with a score of ' . session('score')) }}&summary={{ urlencode('Get your IQ score with iqfreetest.org for free') }}&source=LinkedIn"
+                           class="btn-share linkedin" target="_blank" title="share on Linkedin"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
