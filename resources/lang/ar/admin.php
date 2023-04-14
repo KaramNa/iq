@@ -161,6 +161,9 @@ return [
     ],
     'result_is'                => 'نتيجة اختبارك',
     'age'                     => 'العمر',
+    'test_results'            => 'نتائج الاختبارات',
+    'country'                 => 'البلد',
+    'test_taking_frequency'   => 'عدد مرات إجراء الاختبار'
 
 
 

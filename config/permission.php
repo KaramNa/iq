@@ -186,6 +186,7 @@ return [
             'test-takers' => 'r,d',
             'test-categories' => 'c,r,u,d',
             'tests' => 'c,r,u,d',
+            'test-results' => 'r,d'
 
         ],
         'admin' => [
@@ -210,7 +211,7 @@ return [
             'test-takers' => 'r,d',
             'test-categories' => 'c,r,u,d',
             'tests' => 'c,r,u,d',
-
+            'test-results' => 'r,d'
 
         ],
         'customer_support' => [

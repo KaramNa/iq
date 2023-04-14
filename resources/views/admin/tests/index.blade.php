@@ -30,6 +30,7 @@
                 trans('admin.status'),
                 trans('admin.duration'),
                 trans('admin.number_of_questions'),
+                trans('admin.test_taking_frequency'),
                 trans('admin.actions'),
                 ];
         @endphp
@@ -58,6 +59,7 @@
                     </td>
                     <td>{{$test->duration}}</td>
                     <td>{{$test->questions->count()}}</td>
+                    <td>{{$test->results->count()}}</td>
                     <td class="row d-flex">
 
                         <x-form.action-button :route="route('admin.questions.index',['test_id' => $test->id])"

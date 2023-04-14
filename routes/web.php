@@ -25,6 +25,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SiteMapController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\TestCategoryController;
+use App\Http\Controllers\Backend\TestResultController;
 use App\Http\Controllers\Backend\TestTakerController;
 use App\Http\Controllers\Backend\TrafficsController;
 use App\Http\Controllers\Backend\UserController;
@@ -152,6 +153,8 @@ Route::group(
             });
 
             Route::resource('test-taker', TestTakerController::class);
+            Route::get('test-results', [TestResultController::class, 'index'])->name('test-results.index');
+            Route::delete('test-results/{id}', [TestResultController::class, 'destroy'])->name('test-results.destroy');
             Route::resource('test-categories', TestCategoryController::class);
             Route::resource('tests', IQTestController::class);
             Route::resource('questions', QuestionController::class);

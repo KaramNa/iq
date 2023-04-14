@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page_title'=>$tests[0]->translate()->title,'seo_meta_description'=>$tests[0]->translate()->meta_description,'page_image'=>$tests[0]->image()])
+@extends('layouts.app', ['page_title'=>$test->translate()->title,'seo_meta_description'=>$test->translate()->meta_description,'page_image'=>$test->image('original')])
 
 @section('content')
 
@@ -22,7 +22,7 @@
                             <img class="img-fluid"
                                  alt="Online IQ Test (Free Version)"
                                  title="What should come next to complete the sequence/pattern of shapes?"
-                                 src="{{ $tests[0]->image('original') }}">
+                                 src="{{ $test->image('original') }}">
                         </p>
                     </div>
 
@@ -41,8 +41,8 @@
                                 :text="trans('The test results are provided immediately after completion and are also free of charge.')"/>
                         </ul>
 
-                        @if ($tests[0]->questions->count() > 0)
-                            <form method="GET" action="{{ route('take.test', $tests[0]->translate()->slug) }}">
+                        @if ($test->questions->count() > 0)
+                            <form method="GET" action="{{ route('take.test', $test->translate()->slug) }}">
                                 @csrf
                                 <div class="mb-3">
                                     <div>

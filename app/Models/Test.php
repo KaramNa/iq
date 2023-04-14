@@ -41,6 +41,11 @@ class Test extends Model implements HasMedia, TranslatableContract
         return $this->hasMany(Question::class);
     }
 
+    public function results(): HasMany
+    {
+        return $this->hasMany(TestResult::class);
+    }
+
     public function image($type = 'thumb')
     {
         if ($this->image == null) {

@@ -258,13 +258,14 @@
                     <x-list-item permission="test-takers-read" :text="trans('admin.test_takers')"
                                  :route="route('admin.test-taker.index')" icon="fal fa-graduation-cap"/>
 
+                    <x-list-item permission="test-results-read" :text="trans('admin.test_results')"
+                                 :route="route('admin.test-results.index')" icon="fas fa-chart-bar"/>
+
                     <x-list-item permission="test-categories-read" :text="trans('admin.categories')"
                                  :route="route('admin.test-categories.index')" icon="fal fa-tag"/>
 
                     <x-list-item permission="tests-read" :text="trans('admin.tests')"
                                  :route="route('admin.tests.index')" icon="fal fa-puzzle-piece"/>
-
-
 
                 </x-item-container>
 

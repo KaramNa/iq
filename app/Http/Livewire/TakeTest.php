@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Helpers\UserSystemInfoHelper;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Test;
+use App\Models\TestResult;
 use Livewire\Component;
+use Stevebauman\Location\Facades\Location;
 
 class TakeTest extends Component
 {
@@ -42,6 +45,7 @@ class TakeTest extends Component
     {
         session()->regenerate();
         session()->put('name', strtoupper(request()->test_taker_name));
+        session()->put('age', strtoupper(request()->test_taker_age));
         $this->test = Test::whereTranslation('slug', request()->slug)->firstOrFail();
         $this->questions = Question::where('test_id', $this->test->id)->inRandomOrder()->get();
         $this->timer = $this->test->duration * 60;
@@ -85,6 +89,14 @@ class TakeTest extends Component
         $zi = ($totalPoints - $userAverage) / $standardDeviation;
         $finalScore = intval(100 + ($zi * 15));
         session()->put('score', $finalScore);
+        $country = (new UserSystemInfoHelper)->get_country_from_ip(request()->ip());
+        TestResult::create([
+            'test_id' => $this->test->id,
+            'test_taker_name' => session('name'),
+            'test_taker_age' => session('age'),
+            'country' => $country,
+            'score' => $finalScore
+        ]);
         return redirect()->route('test.prepare.result', ['slug' => $this->test->translate()->slug]);
     }
 

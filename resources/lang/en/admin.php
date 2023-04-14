@@ -166,6 +166,9 @@ return [
     ],
     'result_is'                => 'Your IQ Score',
     'age'                     => 'Age',
+    'test_results'            => 'Test results',
+    'country'                 => 'Country',
+    'test_taking_frequency'   => 'Test-taking frequency'
 
 
 ];

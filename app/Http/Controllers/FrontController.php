@@ -198,8 +198,8 @@ class FrontController extends Controller
 
     public function showTests()
     {
-        $tests = Test::all();
-        return view('front.pages.tests', compact('tests'));
+        $test = Test::first();
+        return view('front.pages.tests', compact('test'));
     }
 
     public function prepareResult($slug)
