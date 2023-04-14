@@ -89,12 +89,12 @@ class TakeTest extends Component
         $zi = ($totalPoints - $userAverage) / $standardDeviation;
         $finalScore = intval(100 + ($zi * 15));
         session()->put('score', $finalScore);
-        $country = (new UserSystemInfoHelper)->get_country_from_ip(request()->ip());
+        $country = (new UserSystemInfoHelper)->get_country_from_ip(request()->ip())['country'];
         TestResult::create([
             'test_id' => $this->test->id,
             'test_taker_name' => session('name'),
             'test_taker_age' => session('age'),
-            'country' => $country,
+            'test_taker_country' => $country,
             'score' => $finalScore
         ]);
         return redirect()->route('test.prepare.result', ['slug' => $this->test->translate()->slug]);

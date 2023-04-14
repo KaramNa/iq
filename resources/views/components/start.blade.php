@@ -54,6 +54,10 @@
 
                         </ul>
                     </div>
+
+                    <div>
+                        <a href="{{route('tests')}}" class="btn btn-primary">@lang('Test Your IQ Now For Free')!</a>
+                    </div>
                     <!--/column -->
                 </div>
                 <!--/.row -->

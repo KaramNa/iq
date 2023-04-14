@@ -22,7 +22,7 @@
                     <td>{{\App\Models\Test::find($testResult->test_id)->title}}</td>
                     <td>{{$testResult->test_taker_name}}</td>
                     <td>{{$testResult->test_taker_age}}</td>
-                    <td>{{$testResult->test_taker_country ?? 'unknown'}}</td>
+                    <td>{{$testResult->test_taker_country}}</td>
                     <td>{{$testResult->score}}</td>
                     <td class="row d-flex">
                         <x-form.action-button
