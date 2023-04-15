@@ -19,6 +19,7 @@
             <div>
                 <div>
                     <div class="row justify-content-center align-items-center">
+                        <h5>{!! $question->translate()->content !!}</h5>
 
                         <div class="col-md-6 question-answer-area">
 
@@ -139,7 +140,7 @@
                         @lang('admin.resume_the_test')
                     </button>
                     <button class="btn btn-success"
-                            wire:click.prevent="submit()">@lang('admin.go_to_result')</button>
+                            wire:click.prevent="submit(timeLeftInSeconds)">@lang('admin.go_to_result')</button>
                 </div>
             </div>
         </div>
@@ -165,7 +166,7 @@
                 }
 
                 if (timeLeftInSeconds === 0) {
-                    Livewire.emit('timerExpired');
+                    Livewire.emit('timerExpired', timeLeftInSeconds);
                 }
             }, 1000);
         }

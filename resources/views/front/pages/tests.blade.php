@@ -1,21 +1,28 @@
 @extends('layouts.app', ['page_title'=>$test->translate()->title,'seo_meta_description'=>$test->translate()->meta_description,'page_image'=>$test->image('original')])
 
 @section('content')
-
+    <style>
+        h2{
+            color: #228b22;
+        }
+    </style>
     <div class="container py-10 " style="min-height:70vh">
 
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="row shadow-lg p-5">
-
+                    <h1 class="text-center mb-5">@lang('admin.online_iq_free_test')</h1>
                     <div class="col-lg-6">
-                        <h1>@lang('admin.online_iq_free_tes')</h1>
-                        <p>
-                            @lang('admin.iq_test_brief')
-                        </p>
-                        <p>
-                            @lang('admin.ads_may_show')
-                        </p>
+                        <h2>@lang('admin.test_instructions'):</h2>
+                        <ul>
+                            <li>{{ trans('Look at the given figures and try to identify a pattern or rule that governs their shape.') }}</li>
+                            <li>{{ trans('The figure may be symmetrical along one or more axes.') }}</li>
+                            <li>{{ trans('The figure may include elements that rotate or turn in a specific direction.') }}</li>
+                            <li>{{ trans('The size or orientation of the figures may change in a particular way.') }}</li>
+                            <li>{{ trans('Apply the pattern or rule you identified earlier to determine what the missing shape should be.') }}</li>
+                        </ul>
+
+                        <p>{{ trans('By following these instructions and looking for patterns in the figures, you should be able to approach the questions with greater confidence and understanding.') }}</p>
 
                         <h4>@lang('admin.preview')</h4>
                         <p>
@@ -27,7 +34,7 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <h3>@lang('Details of the test:')</h3>
+                        <h2>@lang('Details of the test:')</h2>
                         <ul class="list-group mb-5" style="list-style: none;padding: 5px;">
                             <x-li-checkmark :text="trans('20 multiple-choice questions.')"/>
                             <x-li-checkmark :text="trans('25 minutes to complete the test.')"/>
@@ -39,6 +46,8 @@
                                 :text="trans('Test-takers can take the test at their own pace and from the comfort of their own device.')"/>
                             <x-li-checkmark
                                 :text="trans('The test results are provided immediately after completion and are also free of charge.')"/>
+                            <x-li-checkmark
+                                :text="trans('admin.ads_may_show')"/>
                         </ul>
 
                         @if ($test->questions->count() > 0)

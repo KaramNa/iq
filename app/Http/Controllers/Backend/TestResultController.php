@@ -22,6 +22,7 @@ class TestResultController extends Controller
             }
         })->orderBy('id', 'DESC')->paginate();
 
+
         return view('admin.test-results.index', compact('testResults'));
     }
 

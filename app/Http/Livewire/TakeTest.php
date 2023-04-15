@@ -18,7 +18,7 @@ class TakeTest extends Component
     public $currentQuestion = 0;
     public $selectedAnswers = [];
     public $progress = 0;
-    public $timer = 20;
+    public $timer = 1200;
     public $totalQuestions = 0;
     public $question;
     public $imagesLoaded = false;
@@ -73,7 +73,7 @@ class TakeTest extends Component
         }
     }
 
-    public function submit()
+    public function submit($timeLeftInSeconds)
     {
         $totalPoints = 0;
         foreach ($this->questions as $question) {
@@ -95,7 +95,8 @@ class TakeTest extends Component
             'test_taker_name' => session('name'),
             'test_taker_age' => session('age'),
             'test_taker_country' => $country,
-            'score' => $finalScore
+            'score' => $finalScore,
+            'test_completion_time' => $this->timer - $timeLeftInSeconds
         ]);
         return redirect()->route('test.prepare.result', ['slug' => $this->test->translate()->slug]);
     }

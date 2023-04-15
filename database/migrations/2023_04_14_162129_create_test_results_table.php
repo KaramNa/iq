@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('test_taker_age')->nullable();
             $table->string('test_taker_country')->nullable();
             $table->integer('score')->nullable();
+            $table->integer('test_duration')->nullable();
             $table->timestamps();
         });
     }

@@ -161,22 +161,5 @@ class IQTestController extends Controller
             $test->update(['image' => $image->id . '/' . $image->file_name]);
         }
     }
-
-    public function getData()
-    {
-        $data = [
-            'labels' => ['40', '50', '60', '70', '80', '90', '100', '110', '120', '130', '140', '150', '160'],
-            'datasets' => [
-                [
-                    'label' => 'My First Dataset',
-                    'data' => [0.01, 0.2, 1, 5, 10, 50, 50, 80, 90, 95, 99, 99.9, 99.9],
-                    'fill' => false,
-                    'borderColor' => 'rgb(75, 192, 192)',
-                    'lineTension' => 0.1
-                ]
-            ]
-        ];
-
-        return response()->json($data);
-    }
+    
 }

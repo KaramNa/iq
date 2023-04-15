@@ -745,5 +745,11 @@
     "Enter your name" : "أدخل أسمك",
     "Enter your age" : "أدخل عمرك",
     "No Questions available yet" : "لا توجد أسئلة متاحة الآن",
-    "Test Your IQ Now For Free" : "اختبر معدل ذكائك الآن مجانًا"
+    "Test Your IQ Now For Free" : "اختبر معدل ذكائك الآن مجانًا",
+    "Look at the given figures and try to identify a pattern or rule that governs their shape." : "انظر إلى الأشكال المحددة وحاول تحديد نمط أو قاعدة تحكم شكلها.",
+    "Apply the pattern or rule you identified earlier to determine what the missing shape should be." : "قم بتطبيق النمط أو القاعدة التي حددتها مسبقًا لتحديد الشكل المفقود (مكان علامة الاستفهام).",
+    "The figure may be symmetrical along one or more axes." : "قد يكون الشكل متماثلًا على محور واحد أو أكثر.",
+    "The figure may include elements that rotate or turn in a specific direction." : "قد يتضمن الشكل عناصر تدور في اتجاه معين.",
+    "The size or orientation of the figures may change in a particular way." : "قد يتغير حجم أو اتجاه الأشكال بطريقة معينة.",
+    "By following these instructions and looking for patterns in the figures, you should be able to approach the questions with greater confidence and understanding." : "باتباع هذه التعليمات والبحث عن أنماط في الأشكال ، يجب أن تكون قادرًا على التعامل مع الأسئلة بثقة وفهم أكبر."
 }

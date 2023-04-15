@@ -11,6 +11,7 @@
                 trans('admin.age') ,
                 trans('admin.country') ,
                 trans('admin.score') ,
+                trans('admin.test_completion_time') ,
                 trans('admin.actions'),
                 ];
         @endphp
@@ -24,6 +25,7 @@
                     <td>{{$testResult->test_taker_age}}</td>
                     <td>{{$testResult->test_taker_country}}</td>
                     <td>{{$testResult->score}}</td>
+                    <td><span>{{ intval($testResult->test_completion_time / 60) }}</span>:<span>{{ $testResult->test_completion_time % 60 }}</span></td>
                     <td class="row d-flex">
                         <x-form.action-button
                             class="btn-outline-danger" icon="fal fa-trash" permission="test-results-delete"

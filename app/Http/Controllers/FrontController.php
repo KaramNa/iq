@@ -254,7 +254,7 @@ class FrontController extends Controller
             return $filename;
 
         }
-        elseif ($this->isArabicOrEnglish($name) === 'en' || ($name === '' && app()->getLocale() === 'en')){
+        else{
             $template = Image::make(public_path('images/certificate-template_en.png'));
 
             $template->text($name, 60, 160, function ($font) {
@@ -359,6 +359,11 @@ class FrontController extends Controller
 
         // The text contains neither Arabic nor English characters
         return 'Unknown';
+    }
+
+    public function testInstruction()
+    {
+        return view('front.pages.instructions');
     }
 }
 

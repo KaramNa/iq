@@ -62,6 +62,9 @@
         .fa-reddit-alien:before {
             content: "\f281";
         }
+        .fa-download:before {
+            content: "\f019";
+        }
     </style>
     @yield('styles')
 </head>
