@@ -23,7 +23,7 @@
         'feed_title'=>__('blog.latest_posts'),
         'cache_pages'=>1,
         'canonical'=>str_replace('/index.php', '', request()->url()),
-        'twitter_author'=>"Nafezly"
+        'twitter_author'=>"IQFreeTest.org"
     ];
     $website_settings=collect($website_settings);
     if(request()->url()==env("APP_URL"))

@@ -38,7 +38,9 @@ class TakeTest extends Component
         $this->progress = ($this->currentQuestion + 1) / ($this->questions->count()) * 100;
         $this->question = $this->questions[$this->currentQuestion] ?? null;
         $this->totalQuestions = count($this->questions);
-        return view('livewire.take-test')->layout('layouts.take-test');
+        return view('livewire.take-test')->layout('layouts.take-test',[
+            'test' => $this->test
+        ]);
     }
 
     public function mount()

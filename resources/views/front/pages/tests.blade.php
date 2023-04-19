@@ -14,7 +14,7 @@
                     <h1 class="text-center mb-5">@lang('admin.online_iq_free_test')</h1>
                     <div class="col-lg-6">
                         <h2>@lang('admin.test_instructions'):</h2>
-                        <ul>
+                        <ul class="p-0">
                             <li>{{ trans('Look at the given figures and try to identify a pattern or rule that governs their shape.') }}</li>
                             <li>{{ trans('The figure may be symmetrical along one or more axes.') }}</li>
                             <li>{{ trans('The figure may include elements that rotate or turn in a specific direction.') }}</li>

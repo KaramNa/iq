@@ -523,24 +523,18 @@ class UserSystemInfoHelper
     {
         try {
             $location = Location::get($ip);
-            $country = $this->countries[app()->getLocale()][$location->countryCode];
+            $country = $this->countries['ar'][$location->countryCode];
             return [
                 'country' => $country,
                 'country_code' => $location->countryCode
             ];
         } catch (\Exception $e) {
         }
-        if (app()->getLocale() == 'ar') {
-            return [
-                'country' => "غير محدد",
-                'country_code' => "404"
-            ];
-        }else{
-            return [
-                'country' => "Undefined",
-                'country_code' => "404"
-            ];
-        }
+
+        return [
+            'country' => "غير محدد",
+            'country_code' => "404"
+        ];
     }
 
 
