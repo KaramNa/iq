@@ -12,7 +12,7 @@
             </div>
             <div class="col-auto d-flex align-items-center px-1 py-2">
                 <a href="/">
-                    <img src="{{$settings['get_website_logo']}}" style="width: 65px;"
+                    <img src="{{$settings['get_website_logo']}}" style="width: 220px;"
                          alt="{{$settings['website_name']}}">
                 </a>
             </div>
@@ -43,10 +43,10 @@
     </div>
 </div>
 <div id="aside-menu" class=" shadow">
-    <div class="col-12 d-flex justify-content-between  align-items-center p-0 shadow" style="height:65px">
+    <div class="col-12 d-flex justify-content-between  align-items-center p-0 shadow">
         <span class="px-3 font-1 kufi">
 
-            <img src="{{$settings['get_website_logo']}}" style="width: 60px;" alt="{{$settings['website_name']}}">
+            <img src="{{$settings['get_website_logo']}}" style="width: 220px;" alt="{{$settings['website_name']}}">
 
         </span>
         <span class="d-flex">
