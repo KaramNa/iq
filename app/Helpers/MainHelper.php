@@ -2,12 +2,14 @@
 
 namespace App\Helpers;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\MenuLink;
 use App\Models\Page;
 use App\Models\TempFile;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class MainHelper
 {
@@ -340,5 +342,36 @@ class MainHelper
         }
     }
 
+
+    public static function getRightSlug($lang): string|null
+    {
+        $segment = Str::after(url()->current(), '/' . app()->getLocale() . '/');
+        $section = Str::before($segment, '/');
+        $slug = urldecode(Str::afterLast($segment, '/'));
+
+        if ($section === 'article') {
+            $article = Article::whereHas('translations', fn($query) => $query->where('slug', $slug))->first();
+            if (!isset($article)) {
+                return null;
+            }
+            if (isset($article->translate($lang)?->slug)) {
+                return $section . '/' . ($article->translate($lang)?->slug);
+            } else {
+                return 'no-translation';
+            }
+        } elseif ($section === 'page') {
+            $page = Page::whereHas('translations', fn($query) => $query->where('slug', $slug))->firstOrFail();
+            if (!isset($page)) {
+                return null;
+            }
+            if (isset($page->translate($lang)?->slug)) {
+                return $section . '/' . ($page->translate($lang)?->slug);
+            } else {
+                return 'no-translation';
+            }
+        } else {
+            return $segment;
+        }
+    }
 
 }

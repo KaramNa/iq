@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\UserRoleController;
 use App\Http\Controllers\FrontController;
 use App\Http\Livewire\TakeTest;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 # Frontend Controllers
@@ -47,7 +48,6 @@ Route::group(
         Route::get('/admin/getintocontrolpanel', [LoginController::class, 'showLoginForm'])->name('login');
         Route::post('/admin/getintocontrolpanel', [LoginController::class, 'login']);
         Route::post('/admin/logoutfromtocontrolpanel', [LoginController::class, 'logout'])->name('logout');
-
 
 
 //Route::prefix('dashboard')->middleware(['auth', 'ActiveAccount', 'verified'])->name('user.')->group(function () {

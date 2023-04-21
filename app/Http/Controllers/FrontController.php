@@ -127,15 +127,8 @@ class FrontController extends Controller
 
     public function article(Request $request, $slug)
     {
+
         $article = Article::whereHas('translations', fn($query) => $query->where('slug', $slug))->firstOrFail();
-//        $lang = ArticleTranslation::where('article_id', $article->id)->first('locale')->locale;
-        if (!$article->translate()) {
-            abort(404);
-        }
-        $correctSlug = $article->translate()->slug;
-        if ($correctSlug !== $slug) {
-            return redirect()->route('article.show', $correctSlug);
-        }
 
         $article->load([
             'categories',
@@ -163,13 +156,7 @@ class FrontController extends Controller
     public function page(Request $request, $slug)
     {
         $page = Page::whereHas('translations', fn($query) => $query->where('slug', $slug))->firstOrFail();
-        if (!$page->translate()) {
-            abort(404);
-        }
-        $correctSlug = $page->translate()->slug;
-        if ($correctSlug !== $slug) {
-            return redirect()->route('page.show', $correctSlug);
-        }
+
         return view('front.pages.page', compact('page'));
     }
 
@@ -309,7 +296,7 @@ class FrontController extends Controller
             return redirect()->route('tests');
         }
         $category = Category::whereTranslation('slug', 'improve-your-iq')->first();
-        $articles = $category?->articles()->take(6)->get() ?? [];
+        $articles = $category?->articles()->translatedIn(app()->getLocale())->take(6)->get() ?? [];
         return view('front.pages.result', compact('articles', 'test', 'certificate'));
     }
 

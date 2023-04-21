@@ -13,7 +13,8 @@
             @if ($localeCode !== app()->getLocale())
                 <li>
                     <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
-                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+
+                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, \App\Helpers\MainHelper::getRightSlug($localeCode), [], true) }}">
                         {{ $properties['native'] }}
                     </a>
                 </li>
