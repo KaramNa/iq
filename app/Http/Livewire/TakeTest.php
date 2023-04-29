@@ -49,7 +49,7 @@ class TakeTest extends Component
         session()->put('name', strtoupper(request()->test_taker_name));
         session()->put('age', strtoupper(request()->test_taker_age));
         $this->test = Test::whereTranslation('slug', request()->slug)->firstOrFail();
-        $this->questions = Question::where('test_id', $this->test->id)->inRandomOrder()->get();
+        $this->questions = Question::where('test_id', $this->test->id)->inRandomOrder()->limit($this->test->num_of_questions)->get();
         $this->timer = $this->test->duration * 60;
     }
 
@@ -86,7 +86,8 @@ class TakeTest extends Component
                 }
             }
         }
-        $userAverage = 22;
+
+        $this->test->level === 0 ? $userAverage = 30 : ($this->test->level === 1 ? $userAverage = 25 : $userAverage = 17);
         $standardDeviation = 6.03;
         $zi = ($totalPoints - $userAverage) / $standardDeviation;
         $finalScore = intval(100 + ($zi * 15));

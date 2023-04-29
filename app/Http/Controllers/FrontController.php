@@ -78,11 +78,6 @@ class FrontController extends Controller
     {
         $category = Category::whereTranslationLike('slug', $slug)->firstOrFail();
 
-        $correctSlug = $category->translate()->slug;
-        if ($correctSlug !== $slug) {
-            return redirect()->route('category.show', $correctSlug);
-        }
-
         $articles = Article::translatedIn()->where(function ($q) use ($request, $category) {
             if ($request->user_id != null) {
                 $q->where('user_id', $request->user_id);
@@ -185,8 +180,8 @@ class FrontController extends Controller
 
     public function showTests()
     {
-        $test = Test::first();
-        return view('front.pages.tests', compact('test'));
+        $tests = Test::where('published', 1)->get();
+        return view('front.pages.tests', compact('tests'));
     }
 
     public function prepareResult($slug)
@@ -197,8 +192,16 @@ class FrontController extends Controller
         return view('front.pages.prepare-result', compact('slug'));
     }
 
-    function generateCertificate($name, $score, $percent)
+    function generateCertificate($name, $score, $percent, $level)
     {
+        if ($level === 0){
+            $level = 'easy';
+        }elseif ($level === 1){
+            $level = 'medium';
+        }elseif ($level === 2){
+            $level = 'hard';
+        }
+
         if ($this->isArabicOrEnglish($name) === 'ar' || ($name === '' && app()->getLocale() === 'ar'))
         {
             $textWidth = intval(mb_strlen($name));
@@ -208,6 +211,8 @@ class FrontController extends Controller
             $name = $Arabic->utf8Glyphs($name);
 
             $template = Image::make(public_path('images/certificate-template_ar.png'));
+
+            $stamp = Image::make(public_path("images/stamps/{$level}_ar.png"));
 
             $x = $template->width() - $textWidth - 50;
 
@@ -235,6 +240,8 @@ class FrontController extends Controller
                 $font->valign('bottom');
 
             });
+
+            $template->insert($stamp, 'top-left', 500, 542);
             $filename = session()->getId() . '.png';
             $template->save(public_path('certificates/' . $filename));
 
@@ -243,6 +250,9 @@ class FrontController extends Controller
         }
         else{
             $template = Image::make(public_path('images/certificate-template_en.png'));
+
+            $stamp = Image::make(public_path("images/stamps/{$level}_en.png"));
+
 
             $template->text($name, 60, 160, function ($font) {
                 $font->file(public_path('fonts/Cairo-Regular.ttf'));
@@ -267,6 +277,8 @@ class FrontController extends Controller
                 $font->align('center');
                 $font->valign('bottom');
             });
+            $template->insert($stamp, 'top-left', 500, 542);
+
             $filename = session()->getId() . '.png';
             $template->save(public_path('certificates/' . $filename));
 
@@ -290,8 +302,9 @@ class FrontController extends Controller
             $percentile = 50;
         }
 
-        $certificate = $this->generateCertificate($name, $score, $percentile);
+
         $test = Test::whereTranslation('slug', $slug)->firstOrFail();
+        $certificate = $this->generateCertificate($name, $score, $percentile, $test->level);
         if (!session('score')) {
             return redirect()->route('tests');
         }
@@ -348,9 +361,10 @@ class FrontController extends Controller
         return 'Unknown';
     }
 
-    public function testInstruction()
+    public function testInstruction($slug)
     {
-        return view('front.pages.instructions');
+        $test = Test::whereTranslation('slug', $slug)->firstOrFail();
+        return view('front.pages.instructions', compact('test'));
     }
 }
 

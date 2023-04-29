@@ -166,9 +166,6 @@
         @endforeach
         ],
 
-
-
-
     @endif
     "contactPoint": [
         @if($website_settings['phone']!=null)

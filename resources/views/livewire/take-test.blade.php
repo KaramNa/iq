@@ -21,7 +21,7 @@
                     <div class="row justify-content-center align-items-center">
                         <h5>{!! $question->translate()->content !!}</h5>
 
-                        <div class="col-md-6 question-answer-area">
+                        <div class="col-md-6">
 
                             <div class="text-center">
                                 <img class="img-fluid shadow"
@@ -32,7 +32,7 @@
 
                         </div>
 
-                        <div class="col-md-6 my-2 question-answer-area">
+                        <div class="col-md-6 my-2">
 
                             <div class="row justify-content-center align-items-center">
                                 @foreach($question->answers as $answer)
@@ -44,7 +44,7 @@
                                     >
                                         <p class="text-center m-0 fw-bold">{{ $optionLetter++ }}</p>
                                         <img width="100" height="100"
-                                             class="img-fluid shadow"
+                                             class="img-fluid"
                                              alt="IQ Test. Question {{ $currentQuestion+1 }}, option {{ $optionLetter }}"
                                              title="option {{ $optionLetter }}, {{ $answer->translate()?->content }}"
                                              src="{{ $answer->image() }}">

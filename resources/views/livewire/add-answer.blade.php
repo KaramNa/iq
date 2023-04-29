@@ -78,6 +78,7 @@
                                 :label="trans('admin.weight')"
                                 name="answers[weight.{{ $key }}]"
                                 type="number"
+                                step="0.01"
                                 :target-model="$storedAnswers[$loop->index]->weight ?? ''"
                             />
 

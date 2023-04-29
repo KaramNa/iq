@@ -369,6 +369,16 @@ class MainHelper
             } else {
                 return 'no-translation';
             }
+        } elseif ($section === 'category') {
+            $category = Category::whereHas('translations', fn($query) => $query->where('slug', $slug))->firstOrFail();
+            if (!isset($category)) {
+                return null;
+            }
+            if (isset($category->translate($lang)?->slug)) {
+                return $section . '/' . ($category->translate($lang)?->slug);
+            } else {
+                return 'no-translation';
+            }
         } else {
             return $segment;
         }

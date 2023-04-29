@@ -24,6 +24,7 @@ return new class extends Migration
             $table->smallInteger('score')->default('0');
             $table->tinyInteger('published')->default('0');
             $table->integer('duration')->default('20');
+            $table->integer('num_of_questions')->nullable()->default(20);
 
             $table->timestamps();
         });

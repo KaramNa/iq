@@ -727,10 +727,10 @@
     "Share your opinion with us" : "شاركنا رأيك",
     "Your email will not be published." : "بريدك الالكتروني لن يتم نشره.",
     "Your comment" : "تعليقك",
-    "20 multiple-choice questions." : "20 سؤال متعدد الخيارات.",
-    "25 minutes to complete the test." : "25 دقيقة لإكمال الاختبار.",
-    "Assesses a range of cognitive abilities, including verbal reasoning, spatial perception, and logical thinking" : "يقيم مجموعة من القدرات المعرفية ، بما في ذلك التفكير الكلامي والإدراك المكاني والتفكير المنطقي",
-    "Completely free of charge and does not require any registration or personal information" : "مجاني تمامًا ولا يتطلب أي تسجيل أو معلومات شخصية",
+    " multiple-choice questions." : " سؤال متعدد الخيارات.",
+    " minutes to complete the test." : " دقيقة لإكمال الاختبار.",
+    "Assesses a range of cognitive abilities, including verbal reasoning, spatial perception, and logical thinking." : "يقيم مجموعة من القدرات المعرفية ، بما في ذلك التفكير الكلامي والإدراك المكاني والتفكير المنطقي.",
+    "Completely free of charge and does not require any registration or personal information." : "مجاني تمامًا ولا يتطلب أي تسجيل أو معلومات شخصية.",
     "Test-takers can take the test at their own pace and from the comfort of their own device." : "يمكن للمتقدمين للاختبار إجراء الاختبار وفقًا لرغبتهم الخاصة ومن أي جهاز.",
     "The test results are provided immediately after completion and are also free of charge." : "يتم تقديم نتائج الاختبار فور الانتهاء وهي مجانية أيضًا.",
     "Details of the test:" : "تفاصيل الاختبار:",
@@ -751,5 +751,8 @@
     "The figure may be symmetrical along one or more axes." : "قد يكون الشكل متماثلًا على محور واحد أو أكثر.",
     "The figure may include elements that rotate or turn in a specific direction." : "قد يتضمن الشكل عناصر تدور في اتجاه معين.",
     "The size or orientation of the figures may change in a particular way." : "قد يتغير حجم أو اتجاه الأشكال بطريقة معينة.",
-    "By following these instructions and looking for patterns in the figures, you should be able to approach the questions with greater confidence and understanding." : "باتباع هذه التعليمات والبحث عن أنماط في الأشكال ، يجب أن تكون قادرًا على التعامل مع الأسئلة بثقة وفهم أكبر."
+    "By following these instructions and looking for patterns in the figures, you should be able to approach the questions with greater confidence and understanding." : "باتباع هذه التعليمات والبحث عن أنماط في الأشكال ، يجب أن تكون قادرًا على التعامل مع الأسئلة بثقة وفهم أكبر.",
+    "Hard Level" : "مستوى صعب",
+    "Medium Level" : "مستوى متوسط",
+    "Easy Level" : "مستوى سهل"
 }

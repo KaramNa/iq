@@ -181,7 +181,7 @@ Route::group(
         Route::get('/article/{slug}', [FrontController::class, 'article'])->name('article.show');
         Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
         Route::get('/tests', [FrontController::class, 'showTests'])->name('tests');
-        Route::get('/test/ins', [FrontController::class, 'testInstruction'])->name('test.instruction');
+        Route::get('/test/{slug}/instruction', [FrontController::class, 'testInstruction'])->name('test.instruction');
         Route::get('/test/{slug}/prepare-result', [FrontController::class, 'prepareResult'])->name('test.prepare.result');
         Route::get('/test/{slug}/result', [FrontController::class, 'showResult'])->name('test.result');
         Route::get('/take-test/{slug}', TakeTest::class)->name('take.test');

@@ -91,11 +91,11 @@ thead th {
 
 }
 
-html:lang(ar) .main-content {
+html:lang(ar) .main-content.in-active {
     margin-right: 260px;
 }
 
-html:lang(en) .main-content {
+html:lang(en) .main-content.in-active {
     margin-left: 260px;
 }
 
@@ -151,13 +151,15 @@ html:lang(en) .aside.in-active {
     justify-items: center;
     font-size: 12px;
 }
-html:lang(en) .item-container .item-container-title.has-sub-menu:after{
+
+html:lang(en) .item-container .item-container-title.has-sub-menu:after {
     right: 12px;
 }
 
 html:lang(ar) .item-container .item-container-title.has-sub-menu:after {
     left: 12px;
 }
+
 .item-container .item-container-title {
     position: relative;
 }
@@ -173,7 +175,7 @@ html:lang(ar) .item-container .item-container-title.has-sub-menu:after {
 @media (max-width: 700px) {
     .main-content {
         width: 100% !important;
-        margin-right: 0px !important;
+
     }
 
     .top-nav {
@@ -189,7 +191,7 @@ html:lang(ar) .item-container .item-container-title.has-sub-menu:after {
     }
 
     .aside.in-active {
-        right: 0px;
+        right: 0;
     }
 
     #loading-image-container {
@@ -197,16 +199,16 @@ html:lang(ar) .item-container .item-container-title.has-sub-menu:after {
     }
 }
 
-@media (min-width: 700px) {
-    html:lang(ar) .main-content.active {
-        width: 100% !important;
-        margin-right: 0px !important
-    }
-    html:lang(en) .main-content.active {
-        width: 100% !important;
-        margin-left: 0px !important
-    }
+html:lang(ar) .main-content.active {
+    width: 100% !important;
+    margin-right: 0 !important
 }
+
+html:lang(en) .main-content.active {
+    width: 100% !important;
+    margin-left: 0px !important
+}
+
 
 .ck[dir=rtl],
 .ck[dir=rtl],

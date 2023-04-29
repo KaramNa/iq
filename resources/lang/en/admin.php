@@ -141,7 +141,7 @@ return [
 
     'ads_may_show'           => 'It\'s worth noting that ads may be displayed on the website to support the service being
                                  provided for free.',
-    'online_iq_free_test'     => 'IQ Free General Test',
+    'iq_free_tests'     => 'IQ Free Tests',
     'preview'                => 'Preview',
     'tips'               => [
         'dont_worry'      => 'Don\'t let this score discourage you. Instead, use it as motivation to continue learning and growing. Everyone has the potential to improve and reach their full potential.',
